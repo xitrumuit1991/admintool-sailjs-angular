@@ -6,10 +6,6 @@ nbproject
 .idea
 .node_history
 
-
-config/local.js
-config/local.js
-
 node_modules
 bower_components
 
@@ -29,4 +25,6 @@ npm-debug.log
 ./sass-cache
 ./sass-cache/**/*.*
 
-sbd-admin-docker-output.tar.gz
+
+config/local.js
+config/local_production.js
