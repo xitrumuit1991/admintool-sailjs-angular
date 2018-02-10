@@ -1,0 +1,66 @@
+extends ../layout-login
+block script
+	script.
+		function validateEmail(email) {
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		}
+		function checkForm() {
+			var email = $('#inputEmail').val();
+			var password = $('#inputPassword').val();
+			console.log(email);
+			console.log(password);
+			if (!email || !password) {
+				alert('Please fill email and password');
+				return false;
+			}
+			if ( validateEmail(email) == false) {
+				alert('Email invalid');
+				return false;
+			}
+			return true;
+		};
+
+		$(document).ready(function ()
+		{
+			console.log('login page');
+		});
+block body
+	#login-box.form-box
+		.header
+			i.fa.fa-lock.mr-right-15
+			span.text-uppercase Admin Control Panel
+		form(onsubmit='return checkForm();' action='/auth' method='post')
+			.body.bg-gray
+				.form-group
+					if typeof(result) != 'undefined' && result && result.message
+						.row
+							.col-md-12.text-danger.big.text-center.bg-danger
+								span.white #{result ? result.message : ""}
+				.form-group
+					label(for='inputEmail')
+						i.fa.fa-user.mr-right-10
+						span Email address
+					input#inputEmail.form-control(type='email', placeholder='Enter email' name='email' value='nguyentvk@mail.com')
+				.form-group
+					label(for='inputPassword')
+						i.fa.fa-key.mr-right-10
+						span Password
+					input#inputPassword.form-control(type='password', placeholder='Password' name='password' value='123456789')
+			.footer.text-center(style='padding-bottom:30px;')
+				button.btn.bg-olive.btn-block(type='submit' name='submit' value='submit')
+					i.fa.fa-check-square
+					span.mr-left-5.text-uppercase Sign me in
+				//p
+					a(href='#') I forgot my password
+				//a.text-center(href='register.html') Register a new membership
+		//.margin.text-center
+			span Sign in using social networks
+			br
+			button.btn.bg-light-blue.btn-circle
+				i.fa.fa-facebook
+			button.btn.bg-aqua.btn-circle.mr-left-5
+				i.fa.fa-twitter
+			button.btn.bg-red.btn-circle.mr-left-5
+				i.fa.fa-google-plus
+

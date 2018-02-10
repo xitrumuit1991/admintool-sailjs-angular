@@ -1,0 +1,31 @@
+aside.left-side.sidebar-offcanvas
+	// sidebar: style can be found in sidebar.less
+	section.sidebar
+		// Sidebar user panel
+		.user-panel
+			.pull-left.image
+				img.img-circle(src='{{ user.avatar || "img/avatar1.png" }}', alt='User Image')
+			.pull-left.info
+				p.left-info-user-email {{user.name || user.email }}
+				a(href='javascript:void(0);')
+					i.fa.fa-circle.text-success
+					span  Online
+		ul.sidebar-menu
+			li
+				a(href='/')
+					i.fa.fa-dashboard
+					span Home
+			li(ng-repeat='ite in menuleft' ng-class='{"treeview" : ite.submenu }')
+				a.pointer(href='{{ite.href}}' ng-if=' ite.home ')
+					i(class='{{ite.icon}}' ng-if='ite.icon')
+					span {{ite.title}}
+
+				a.pointer(ui-sref='{{ite.href}}' ng-if=' !ite.home' )
+					i(class='{{ite.icon}}' ng-if='ite.icon')
+					span {{ite.title}}
+
+				ul.treeview-menu(ng-if='ite.submenu')
+					li(ng-repeat='sub in ite.submenu')
+						a.pointer(href='{{sub.href}}' ui-sref='{{sub.href}}')
+							i(class='{{sub.icon}}' ng-if='sub.icon')
+							span {{sub.title}}

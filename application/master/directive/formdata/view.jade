@@ -1,0 +1,152 @@
+form.row(ng-submit='options.submit()')
+	.div(ng-repeat='group in options.data' class='col-md-{{group.col || 12}}')
+		.box(class='{{group.class}}')
+			.box-header.clearfix
+				i(class='{{group.icon || "fa fa-inbox"}}')
+				h3.box-title.text-uppercase {{group.title}}
+			.box-body.clearfix
+				.div(
+				ng-repeat='form in group.form'
+				ng-class="[options.style!='layout2' ? group.subCol  ? 'col-md-' + group.subCol:'col-md-12':'',options.style=='layout2'?'metadata--form-sort' :group.type!='vertical'?'row':'',form.type!='checkbox' ? 'form-group': 'form-check']"
+				)
+					.div(style='width:100%')
+						.row
+							i.ti-pencil(ng-if="options.style=='layout2' && form.icon")
+							label.form-data-label(
+							ng-if='form.type!="checkbox" && form.title'
+							ng-class="[group.type!='vertical' || options.style=='layout2' ? 'col-md-4' :'col-md-12']")
+								span.mr-right-10 {{form.title}}:
+								i.icon-question(
+								ng-if='form.description'
+								sbd-tooltip
+								data-placement='top',
+								data-toggle='tooltip',
+								data-title='uiza.io'
+								ng-value='form.description'
+								)
+								span.form-data-limit-text.text-primary.pull-right(ng-if='form.limit') {{form.limit - model[form.key].length}}
+
+							div(ng-if='options.mode =="view"' ng-class="[group.type!='vertical' || options.style=='layout2' ? 'col-md-8' :'col-md-12']")
+								span(ng-if='form.type!="password" && form.type!="fileUpload" && form.type!="multiCheckbox"') {{model[form.key]}}
+								span(ng-if='form.type=="password"') *******
+								span(ng-if='form.type=="multiCheckbox"') {{model[form.key].toString()}}
+								span(ng-if='form.type=="fileUpload"')
+									img(src='{{model[form.key]}}' height='50px' width='auto' ng-if='form.fileType =="image" && model[form.key] ')
+									a(href='{{model[form.key]}}' ng-if='form.fileType !="image"') {{model[form.key] | limitTo :10}}...
+
+							div(ng-if='options.mode !="view"' ng-class="[group.type!='vertical' || options.style=='layout2' ? 'col-md-8' :'col-md-12']")
+								div(ng-if='form.type=="tagging"')
+									uiza-tag-input(ng-if='!form.config.single' data-model='form.data' data-config='form.config')
+									uiza-tag-input(ng-if='form.config.single' data-model='model[form.key]' data-config='form.config')
+								div(ng-if='form.type=="tagging2"')
+									uiza-tag-input-v2(
+									data-model='form.data'
+									data-config='form.config'
+									)
+								div(ng-if='form.type=="date"')
+									uiza-date-picker(data-model='model[form.key]' data-config='form.config')
+
+								div(ng-if='form.type=="datetime"')
+									uiza-datetime-picker(data-model='model[form.key]')
+
+								div(ng-if='form.type=="text" || form.type=="email" || form.type=="number" || form.type=="password"')
+									input.form-control(
+									ng-required="form.required",
+									type='{{form.type}}'
+									ng-model='model[form.key]'
+									maxlength='{{form.limit}}'
+									ng-readonly='form.readonly || form.disabled'
+									placeholder="{{form.placeholder}}")
+
+								div(ng-if='form.type=="dateRange"')
+									uiza-range-date(data-model='model[form.key]' data-config='form.config')
+								div(ng-if='form.type=="textFilter"')
+									uiza-text-filter(data-model='model[form.key]' data-config='form.config')
+
+								div.form-check(
+								ng-if='form.type=="radio"'
+								ng-repeat='radio in form.options'
+								ng-class='{"display-inline" : form.inline}'
+								)
+									label.form-check-label.text-capitalize
+										input.form-check-input(
+										name ='{{form.key}}'
+										type='radio'
+										ng-value='radio.value || radio'
+										ng-model='model[form.key]'
+										ng-readonly='form.readonly || form.disabled' )
+										span.margin-left-5.margin-right-10 {{radio.title || radio }}
+
+								div(ng-if='form.type=="fileUpload"')
+									uiza-file-upload(
+									data-id='form.config.id'
+									data-url='model[form.key]'
+									data-done-upload='form.config.doneUpload'
+									data-name='form.config.name'
+									data-button-name='form.config.buttonName'
+									data-options='form.config'
+									)
+
+								div(ng-if='form.type=="textarea"')
+									textarea.form-control(ng-required="form.required" rows='{{form.row || 6}}' ng-model='model[form.key]' maxlength='{{form.limit}}' placeholder="{{form.placeholder}}")
+
+								div(ng-if='form.type=="checkbox"')
+									sbd-checkbox(
+									ng-model='model[form.key]'
+									ng-config='form.options'
+									ng-title='form.title'
+									ng-disabled='form.disabled || form.readonly'
+									)
+								div(
+								ng-if='form.type=="multiCheckbox"'
+								ng-class='{"display-inline" : form.inline}'
+								)
+									uiza-multi-checkbox(
+									data-options = 'form.options'
+									data-model = 'model[form.key]'
+									)
+
+								div(ng-if='form.type=="arrayList"')
+									uiza-array-list(
+									data-model='model[form.key]'
+									)
+								div(ng-if='form.type=="slug"')
+									uiza-slug-input(ng-model='model[form.key]' ng-from-model='model[form.copyFromKey]' placeholder="{{form.placeholder}}" )
+
+								div(ng-if='form.type=="select"')
+									select.form-control(
+									ng-if='form.config.optionType !="array" && form.options.length>0'
+									ng-model='model[form.key]'
+									ng-options="opt[form.keyValue || 'value'] as opt[form.keyTitle || 'title'] for opt in form.options"
+									ng-required="form.required"
+									ng-disabled="form.disabled"
+									ng-change="form.selectChange(model[form.key])"
+									)
+									select.form-control(
+									ng-if='form.config.optionType =="array" && form.options.length>0'
+									ng-model='model[form.key]'
+									ng-options="opt for opt in form.options track by opt"
+									ng-required="form.required"
+									ng-disabled="form.disabled"
+									)
+
+								div(ng-if='form.type=="selectAjax"')
+									uiza-select-ajax(
+									ng-key='model[form.key]'
+									ng-item ='form'
+									)
+			.box-footer.clearfix(ng-if='options.submit')
+				ul.list-inline
+					li(ng-if='options.submit')
+						button.btn(ng-class='{"btn-default":options.onSubmit,"btn-primary":!options.onSubmit}') Save
+					li(ng-repeat='item in options.buttons')
+						button.btn(
+						class="{{item.class || 'btn-primary'}}"
+						ng-if='item.type=="button"'
+						ng-click='item.action()'
+						) {{item.title}}
+						a.btn(
+						class="{{item.class || 'btn-primary'}}"
+						ng-if='item.type=="a"'
+						ng-click='item.action()'
+						) {{item.title}}

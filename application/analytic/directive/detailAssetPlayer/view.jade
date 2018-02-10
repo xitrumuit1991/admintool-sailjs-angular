@@ -1,0 +1,28 @@
+.element-box.detail-asset-player
+	.title.margin-bottom-10
+		i.icon-film
+		span.name {{item.name}}
+
+	.row.margin-top-20
+		.col-md-12
+			form.form-inline.margin-bottom-10
+				label.margin-right-5  From
+				uiza-date-picker(data-model='start_date')
+
+				label.margin-right-5.margin-left-5 To
+				uiza-date-picker(data-model='end_date')
+				//span.margin-10 Or
+				//select.form-control.inline(ng-model='selectRange.perios')
+				//	option(value='') Select
+				//	option(ng-repeat='ite in listSelectPeriods' value='{{ite.value}}') {{ite.label}}
+		.col-md-12.video-player.video-player-169
+			span.loading The player is loading. Please wait...
+			div#video-player-analytic-entity
+			//img.image(src='images/detail-asset-player.png')
+
+	//.video-player
+		//	.row
+		//		.col-md-12
+		//			span.loading The player is loading. Please wait...
+		//			#video-player-analytic-entity
+		//			img.image(src='images/detail-asset-player.png')

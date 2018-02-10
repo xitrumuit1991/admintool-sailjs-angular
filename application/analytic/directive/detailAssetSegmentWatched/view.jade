@@ -1,0 +1,9 @@
+h5.element-header.margin-top-30
+	span Segments Watched
+	i.fa.fa-question-circle-o.margin-left-10(uiza-tooltip ng-value='"Allow zoom able to view segments detail of videos"')
+.element-box.relative
+	button.btn.btn-primary(ng-click="resetZoom()")
+		i.fa.fa-refresh.pointer
+		span Reset
+	div
+		canvas#segments_watched_chart( width="500" height="500")

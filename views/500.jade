@@ -1,0 +1,21 @@
+extends ./layout
+block body
+	section.content
+		.error-page
+			h3.headline.text-info.text-warning.font-30(style='font-size: 80px;')
+				i.fa.fa-warning.text-yellow
+				span Server error 500
+			.error-content
+				.row
+					.col-md-12
+						if (typeof data !== 'undefined' && data && data.message)
+							h3= data.message
+						else if (typeof data !== 'undefined' && data)
+							h3= data
+						else
+							h3 Server error 500
+				.row
+					.col-md-12
+						label.text-primary
+							a(href='/') Home
+

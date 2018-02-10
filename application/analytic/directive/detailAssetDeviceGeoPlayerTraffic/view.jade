@@ -1,0 +1,63 @@
+.row.detail-asset-list-block.margin-top-30
+	div(ng-repeat='ite in block' class='{{ite.class}}')
+		.element-box.detail-block.pointer(ng-click='changeBlock(ite)' ng-class='{"active": activeBlock== ite.name }')
+			.row
+				.col-md-4.text-center
+					i.icon(class='{{ite.icon}}' style='color:{{ite.active ? ite.colorActive : ite.color }}')
+				.col-md-8
+					label.strong {{ite.title}}
+					.description {{ite.description}}
+				.col-md-12
+					hr
+				.col-md-12.each-data(ng-repeat='dataItem in ite.data | limitTo:10'
+				ng-class='{"first": $first}'
+				)
+					.row(ng-if='loadingTableData && activeBlock == ite.name && $first')
+						.col-md-12
+							.text-center.text-primary
+								i.fa.fa-spinner.fa-spin
+					.row(ng-if='loadingTableData == false || activeBlock != ite.name')
+						.col-md-6
+							span.title.col-limit-length-200 {{dataItem.title}}
+						.col-md-6.text-right
+							span {{dataItem.value | number }}
+
+
+
+
+.row
+	.col-md-12
+		.element-box
+			h6.element-header
+				span.mr-5.text-capitalize {{ (activeBlock == 'geo' ? "Geography" : activeBlock) }}
+				//button.btn.btn-primary.pull-right.btn-sm
+					span.text-uppercase download report
+
+			//button.btn.btn-default
+				span.margin-right-5 Edit table column
+				i.fa.fa-angle-down
+			.clearfix
+			table.table.table-striped.table-lightfont.dataTable()
+				thead
+					tr(role='row')
+						th(ng-repeat='ite in tableOptions.data' ng-class='{"sorting" : ite.sortAble }')
+							span {{ite.title}}
+				tbody
+					tr(ng-if='loadingTableData')
+						th(colspan='{{tableOptions.data.length}}').text-center.text-primary
+							i.fa.fa-spinner.fa-spin
+
+					tr(ng-repeat='ite in tableData' ng-if='loadingTableData == false && !ite.belongTo || (ite.belongTo && ite.show ) ')
+						td(ng-repeat='colum in tableOptions.data')
+							div(ng-if='$first')
+								.pointer(ng-if=' !ite.belongTo && ite.value ' ng-click='expandRow(ite)')
+									i.fa.fa-caret-right
+									span.margin-left-10: b {{ite[colum.key]}}
+								div(ng-if=' ite.belongTo || !ite.value ')
+									span.margin-left-30 {{ite[colum.key]}}
+							div(ng-if='!$first')
+								span(ng-if='colum.type == "text"') 		{{ite[colum.key]}}
+								span(ng-if='colum.type == "percent" && ite[colum.key]*100 != 100 ') {{ ite[colum.key]*100 | number : 2 }} %
+								span(ng-if='colum.type == "percent" && ite[colum.key]*100 == 100 ') {{ ite[colum.key]*100 | number : 0 }} %
+								span(ng-if='colum.type == "number"') 	{{ite[colum.key] | number }}
+								span(ng-if='colum.type == "time"') 		{{ite[colum.key] | secondToTime : 'hh:mm:ss' }}

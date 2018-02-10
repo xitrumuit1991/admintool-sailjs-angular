@@ -1,0 +1,20 @@
+sbd-form-data(ng-model='item' ng-form-data='form')
+.form-group
+	label.col-form-label.col-sm-4  Set user belong group
+.form-group
+	table.table.table-bordered
+		tbody
+			tr(ng-repeat='ite in listGroup')
+				th(style='width:150px;')
+					input(type='checkbox' ng-model='ite.active')
+					span.mr-left-10.text-primary {{ite.name}}
+				th
+					.row
+						.col-md-2.mr-bottom-5(ng-repeat='oneper in ite.permissionList')
+							.div(ng-class='{"text-primary": oneper.type == "get","text-danger": oneper.type == "delete","text-warning": oneper.type == "post","text-success" : oneper.type == "put"}')
+								span.font-10 {{oneper.name}}
+							.div.font-10
+								span.font-10 {{oneper.url}}
+.form-group
+	button.btn.btn-primary(type='button' ng-click='submit()') Save
+

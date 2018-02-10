@@ -1,0 +1,9 @@
+ul.list-inline.menu-module-fix-top(ng-if='topmenu && topmenu.length > 0')
+	li
+		a(href='/')
+			i(class='fa fa-home')
+			span.mr-left-5() Home
+	li(ng-repeat='ite in topmenu')
+		a(href='{{ite.href}}')
+			i(class='{{ite.icon}}' ng-if='ite.icon')
+			span.mr-left-5(ng-if='ite.title') {{ite.title}}

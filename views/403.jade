@@ -1,0 +1,20 @@
+extends ./layout
+block body
+	section.content
+		.error-page
+			h4.headline.text-warning.font-30(style='font-size: 80px;')
+				i.fa.fa-warning.text-warning
+				span Forbidden 403
+			.error-content
+				.row
+					.col-md-12
+						if (typeof data !== 'undefined' && data && data.message)
+							h2= data.message
+						else if (typeof data !== 'undefined' && data)
+							h2= data
+						else
+							h2 You don't have permission to see the page you're trying to reach.
+				.row
+					.col-md-12
+						label.text-primary
+							a(href='/login') Login

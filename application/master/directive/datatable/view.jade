@@ -1,0 +1,98 @@
+style.
+	table.dataTable td, table.dataTable th {
+		white-space: nowrap;
+	}
+.box(class='{{options.tableClass || "box-info"}}')
+	.box-header
+		h3.box-title
+			i(class='{{options.tableIcon || "fa fa-info" }}')
+			span.mr-left-5 {{options.tableTitle || "Table Title"}}
+		.clearfix
+		h5.clearfix.pd-left-10.mr-0(ng-if='options.tableDescription') {{options.tableDescription}}
+	.box-body
+		#example1_wrapper.dataTables_wrapper.form-inline(role='grid')
+			.row(ng-if='options.introduceText')
+				.col-sm-12
+					span {{options.introduceText}}
+			.row
+				.col-md-6
+					.row
+						.col-md-4(ng-if='options.searchBy')
+							//form
+								uiza-search-table(
+								data-on-search='search'
+								data-extend='options.searchExtendOptions'
+								data-active='options.searchExtendActive')
+							#example1_length.dataTables_length
+								input.form-control(type='text', aria-controls='example1' placeholder='search')
+						.col-md-8
+							.new(ng-if='options.add')
+								button.btn.btn-sm.btn-primary( ng-click='addAction(options.add)')
+									i.fa.fa-plus
+									span.mr-left-5 New
+							.deactive(ng-if='options.deactiveBySelect')
+								button.btn.btn-sm.btn-default(ng-click='deactiveBySelectAction()')
+									span Deactive
+				.col-md-6
+					#example1_filter.dataTables_filter
+						label
+							select.form-control.form-control-sm(ng-model='options.limit' convert-to-number ng-change='search()')
+								option(ng-repeat="item in options.limits track by $index" value="{{item}}") {{item}}
+							span.mr-left-5 item per page
+
+			table#example1.table.table-bordered.table-striped.dataTable(aria-describedby='example1_info')
+				thead
+					tr(role='row')
+						th #
+						th(
+						ng-repeat='item in options.form'
+						ng-click='setOrder(item.key,item.disableSort)'
+						ng-class="{'sorting_desc' :  !options.asc && options.orderBy == item.key ,'sorting_asc' : options.asc && options.orderBy == item.key,'sorting' : !item.disableSort}"
+						)
+							input(type='checkbox' ng-if='item.type =="actionBox"' ng-model='options.isCheckedAll' ng-click='checkedAll()')
+							span.mr-left-10(ng-if='item.title') {{item.title}}
+						th(width='100px'
+						ng-if='options.select || options.view || options.edit || options.delete')
+							span Action
+
+				tbody(role='alert', aria-live='polite', aria-relevant='all')
+					tr(ng-if='!data || data.length <= 0')
+						td.text-center(colspan='{{options.form.length+1}}')
+							h5.text-danger.text-center No data
+
+					tr(ng-repeat="item in data" ng-if='data')
+						td(width='20px') {{($index+1)+ options.limit*(options.currentPage - 1)}}
+						td(ng-repeat='itm in options.form' ng-if='!options.colSettingApply || itm.isCheck')
+							read-object-key(
+							ng-key='itm.key'
+							ng-option='itm'
+							ng-model='item')
+						td.text-center(ng-if='options.select || options.view || options.edit || options.delete')
+							ul.list-inline
+								li(ng-if='options.view')
+									span.pointer: i.fa.fa-search.text-info( ng-click='options.view(item)')
+								li(ng-if='options.edit')
+									span.pointer: i.fa.fa-pencil.text-primary(ng-click='options.edit(item,callbackEdit)')
+								li(ng-if='options.select')
+									span.pointer: a.text-primary.text-primary( ng-click='options.select(item)')
+								li(ng-if='options.delete')
+									span.pointer: i.fa.fa-remove.text-danger( ng-click='options.delete(item,callbackDelete)')
+			.row
+				.col-xs-6
+					#example1_info.table-records-info.dataTables_info
+						span(style='font-style: italic;font-size: 12px;') {{options.totalItems}} items
+				.col-xs-6
+					.dataTables_paginate.paging_bootstrap
+						uib-pagination.table-records-pages.pagination(
+						total-items='options.totalItems',
+						ng-model='options.currentPage',
+						items-per-page='options.limit'
+						ng-change="onPageChange(options.searchKey)"
+						max-size="7"
+						boundary-links="true"
+						rotate="false"
+						first-text='«'
+						last-text = '»'
+						next-text ='›'
+						previous-text= '‹'
+						)

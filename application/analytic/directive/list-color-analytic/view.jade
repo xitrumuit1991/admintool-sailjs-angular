@@ -1,0 +1,12 @@
+.analytis-layout-list-color
+  ul
+    li(ng-repeat='item in formData' style='border-left-color:{{item.color || "#0575ff"}}')
+      span.title
+        span(style='margin: 0 5px;') {{item.title}}
+        i.fa.fa-question-circle.margin-left-10(ng-if='item.tooltip' sbd-tooltip ng-value='item.tooltip')
+      span.badget.bold(ng-if='item.type == "currency"') {{model[item.key] | currency : "" : 0}}
+      span.badget.bold(ng-if='item.type == "percent" && model[item.key]*100 != 100 ') {{ (model[item.key]*100) | number : 2 }} %
+      span.badget.bold(ng-if='item.type == "percent" && model[item.key]*100 == 100 ') {{ (model[item.key]*100) | number : 0 }} %
+      span.badget.bold(ng-if='item.type == "text"') {{model[item.key]}}
+      span.badget.bold(ng-if='item.type == "number"') {{model[item.key] | number : 0 }}
+      span.badget.bold(ng-if='item.type == "time"') {{model[item.key] | secondToTime : 'hh:mm:ss' }}

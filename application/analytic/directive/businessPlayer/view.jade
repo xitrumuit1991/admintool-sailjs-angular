@@ -1,0 +1,61 @@
+.modal.modal-retranscode(id="{{modalBusinessPlayerPieChart.id}}" tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true'
+data-backdrop="static" data-keyboard="false"
+)
+	.modal-dialog.modal-lg(role='document')
+		.modal-content
+			.modal-header
+				h5.modal-title Player
+				button.close(type='button', data-dismiss='modal', aria-label='Close' ng-click='modalBusinessPlayerPieChart.close()' )
+					span(aria-hidden='true') ×
+			.modal-body
+				.row
+					.col-md-4
+						canvas#businessPlayerChart_display( width="500" height="500")
+					.col-md-4
+						canvas#businessPlayerChart_play_request( width="500" height="500")
+					.col-md-4
+						canvas#businessPlayerChart_video_start( width="500" height="500")
+			.modal-footer
+				.btn-center
+					button.btn.btn-secondary(type='button', data-dismiss='modal' ng-click='modalBusinessPlayerPieChart.close()') Close
+
+
+.element-box
+	.row
+		.col-md-12
+			//h5 Player
+			h6.element-header
+				span.mr-5 Player
+				i.fa.fa-question-circle(uiza-tooltip ng-value='"List Player which your content is played"')
+				ul.nav.nav-pills.pull-right
+					li
+						i.fa.fa-pie-chart.pointer(ng-click='modalBusinessPlayerPieChart.show()')
+		.col-md-12
+			table.table.table-hover.table-striped
+				thead
+					th Name
+					th Display
+					th Playes Requested
+					th Video starts
+				tbody
+					tr(ng-repeat='ite in player')
+						td {{ite.name}}
+						td {{ite.display | number }}
+						td {{ite.play_request | number }}
+						td {{ite.video_start | number }}
+
+		.col-md-12(ng-if='pagination.items.length > pagination.limit')
+			.layout-pagination
+				uib-pagination.table-records-pages(
+				total-items='pagination.totalItems',
+				ng-model='pagination.currentPage',
+				items-per-page='pagination.limit'
+				ng-change="pagination.onPageChange()"
+				max-size="5"
+				boundary-links="true"
+				rotate="false"
+				first-text='«'
+				last-text = '»'
+				next-text ='›'
+				previous-text= '‹'
+				)

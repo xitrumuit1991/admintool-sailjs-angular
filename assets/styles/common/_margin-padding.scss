@@ -1,0 +1,53 @@
+$commonSizes: 0 5 10 15 20 25 30 35 40 45 50;
+@each $size in $commonSizes {
+  .mr-top-#{$size} {
+    margin-top: #{$size}px;
+  }
+  .mr-bottom-#{$size} {
+    margin-bottom: #{$size}px;
+  }
+  .mr-left-#{$size} {
+    margin-left: #{$size}px;
+  }
+  .mr-right-#{$size} {
+    margin-right: #{$size}px;
+  }
+  .mr-top-bottom-#{$size} {
+    margin-top: #{$size}px;
+    margin-bottom: #{$size}px;
+  }
+  .mr-left-right-#{$size} {
+    margin-left:  #{$size}px;
+    margin-right: #{$size}px;
+  }
+  .mr-#{$size} {
+    margin: #{$size}px;
+  }
+}
+
+$paddingSize: 0 5 10 15 20 25 30 35 40 45 50;
+@each $size in $paddingSize {
+  .pd-bottom-#{$size} {
+    padding-bottom: #{$size}px;
+  }
+  .pd-left-#{$size} {
+    padding-left: #{$size}px;
+  }
+  .pd-right-#{$size} {
+    padding-right: #{$size}px;
+  }
+  .pd-top-#{$size} {
+    padding-top: #{$size}px;
+  }
+  .pd-top-bottom-#{$size} {
+    padding-top: #{$size}px ;
+    padding-bottom: #{$size}px ;
+  }
+  .pd-left-right-#{$size} {
+    padding-left: #{$size}px;
+    padding-right: #{$size}px;
+  }
+  .pd-#{$size} {
+    padding: #{$size}px;
+  }
+}

@@ -1,0 +1,11 @@
+aside.right-side
+	section.content-header.breadcrumb-content-header-custom
+		ol.breadcrumb.home-breadcrumb
+			li.active(ng-repeat='ite in breadcrumb')
+				a(href='{{ite.href}}' ui-sref='{{ite.href}}')
+					i(class='fa fa-dashboard' ng-if='$first')
+					span.text-uppercase {{ite.name}}
+	.clearfix
+	section.content
+		div(ui-view='')
+			sbd-home-block(ng-type='"modulePage"')

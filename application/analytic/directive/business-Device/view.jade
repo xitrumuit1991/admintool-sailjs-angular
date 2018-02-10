@@ -1,0 +1,52 @@
+.modal.modal-retranscode(id="{{modalPieChart.id}}" tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true'
+data-backdrop="static" data-keyboard="false"
+)
+	.modal-dialog.modal-lg(role='document')
+		.modal-content
+			.modal-header
+				h5.modal-title Device
+				button.close(type='button', data-dismiss='modal', aria-label='Close' ng-click='modalPieChart.close()' )
+					span(aria-hidden='true') ×
+			.modal-body
+				.row
+					.col-md-4
+						canvas#businessDeviceChart_display( width="500" height="500")
+					.col-md-4
+						canvas#businessDeviceChart_play_request( width="500" height="500")
+					.col-md-4
+						canvas#businessDeviceChart_video_start( width="500" height="500")
+
+			.modal-footer
+				.btn-center
+					button.btn.btn-secondary(type='button', data-dismiss='modal' ng-click='modalPieChart.close()') Close
+
+
+
+
+.element-box.business-block
+	.row
+		.col-md-12
+			h6.element-header
+				span.mr-5 Device
+				i.fa.fa-question-circle(uiza-tooltip ng-value='"List Devices play your content"')
+				ul.nav.nav-pills.pull-right
+					li
+						i.fa.fa-pie-chart.pointer(ng-click='modalPieChart.show()')
+		.col-md-12
+			table.table.table-hover.table-striped
+				thead
+					th Name
+					th Display
+					th Playes Requested
+					th Video starts
+				tbody
+					tr(ng-repeat='ite in device' ng-if=' !ite.belongTo || (ite.belongTo && ite.show ) ')
+						td
+							.pointer(ng-if=' !ite.belongTo' ng-click='expandRow(ite)')
+								i.fa.fa-caret-right
+								span.margin-left-10 {{ite.name}}
+							div(ng-if=' ite.belongTo')
+								span.margin-left-30 {{ite.name}}
+						td {{ite.display | number }}
+						td {{ite.play_request | number }}
+						td {{ite.video_start | number }}

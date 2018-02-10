@@ -1,0 +1,25 @@
+.element-box.business-block
+	.row
+		.col-md-12
+			//h5 Geography
+			h6.element-header
+				span.mr-5 Geography
+				i.fa.fa-question-circle(uiza-tooltip ng-value='"List Countries play your content"')
+		.col-md-12.margin-bottom-10
+			ul.nav.nav-pills.smaller.center
+				li.nav-item
+					a.nav-link.active(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='changeViewGeo("all")') All
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='changeViewGeo("display")') Display
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#playRequested', aria-expanded='false' ng-click='changeViewGeo("playRequest")') Players Requested
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#hourWatched', aria-expanded='false' ng-click='changeViewGeo("videoStart")') Video Starts
+		.col-md-12
+			canvas(id="base"
+			class="chart-horizontal-bar"
+			chart-data="dataCanvas"
+			chart-labels="labelsCanvas"
+			chart-series="seriesCanvas"
+			chart-colors="chartColors"
+			)

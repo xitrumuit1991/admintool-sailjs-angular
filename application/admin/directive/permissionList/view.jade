@@ -1,0 +1,37 @@
+table.table.table-bordered.permission
+	colgroup
+		col(width="2%")
+		col(width="23%")
+		col(width="75%")
+	thead
+		tr
+			td #
+			td(colspan=2)
+				label
+					input.groups-input(type='checkbox' ng-change='selectItem("all")' ng-model='permissionList.active')
+					| &nbsp
+					| Select All
+	tbody
+		tr(ng-repeat='items in permissionList.list')
+			th {{$index + 1}}
+			th.parents
+				label
+					input.groups-input(type='checkbox' ng-model='items.active' ng-change='selectItem(items.title)')
+					span.mr-left-10 {{items.title}}
+			th.children
+				ul.list-unstyled.list-inline
+					li.col-md-4(ng-repeat='item in items.items')
+						label.mr-bottom-0
+							input.groups-input(type='checkbox' ng-model='item.active')
+							span.mr-left-10( ng-class='{"text-primary": item.type == "get","text-danger": item.type == "delete","text-warning": item.type == "post","text-success" : item.type == "put"}')
+								| {{item.title}}
+								span.text-uppercase.mr-left-5 ({{item.type}})
+						.mr-bottom-10: small {{item.permission}}
+	tfoot
+		tr
+			td
+			td(colspan=2)
+				label
+					input.groups-input(type='checkbox' ng-change='selectItem("all")' ng-model='permissionList.active')
+					| &nbsp
+					| Select All

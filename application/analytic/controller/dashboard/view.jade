@@ -1,0 +1,41 @@
+.element-wrapper
+	div(ui-view='')
+		.element-box-tp
+			//.row
+				.col-md-12
+					uiza-dashboard-tab
+			//.row
+				.col-md-4
+					uiza-dashboard-total-summary
+				.col-md-4
+					uiza-dashboard-popular-now
+				.col-md-4
+					uiza-dashboard-trending-past-hour
+			//.row
+				.col-md-12
+					.mt-5
+						uiza-dashboard-top-ten-country
+			//.row
+				.col-md-12
+					.mt-5
+						uiza-dashboard-concurrent-user
+			//.row
+				.col-md-12
+					.mt-5
+						uiza-dashboard-top-content-line
+
+
+
+//.row.margin-top-20
+//	.col-md-12
+//		form.form-inline.margin-bottom-10
+//			label.margin-right-5  From
+//			sbd-date-picker(data-model='selectRange.start_date')
+//
+//			label.margin-right-5.margin-left-5 To
+//			sbd-date-picker(data-model='selectRange.end_date')
+//
+//			span.margin-10 Or
+//			select.form-control.inline(ng-model='selectRange.perios')
+//				option(value='') Select
+//				option(ng-repeat='ite in listSelectPeriods' value='{{ite.value}}') {{ite.label}}

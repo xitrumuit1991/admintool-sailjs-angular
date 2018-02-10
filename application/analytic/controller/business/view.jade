@@ -1,0 +1,25 @@
+.row.mr-top-20.mr-bottom-20
+	.col-md-12
+		form.form-inline.mr-bottom-10
+			label.mr-right-5  From
+			sbd-date-picker(data-model='selectRange.start_date')
+
+			label.mr-right-5.mr-left-5 To
+			sbd-date-picker(data-model='selectRange.end_date')
+
+			span.mr-10 Or
+			select.form-control.inline(ng-model='selectRange.perios')
+				option(value='') Select
+				option(ng-repeat='ite in listSelectPeriods' value='{{ite.value}}') {{ite.label}}
+
+//uiza-business-statistic(ng-start-date='selectRange.start_date' ng-end-date='selectRange.end_date')
+//uiza-business-asset-videos(ng-start-date='selectRange.start_date' ng-end-date='selectRange.end_date')
+//.row
+//	.col-md-6
+//		uiza-business-device(ng-start-date='selectRange.start_date' ng-end-date='selectRange.end_date')
+//	.col-md-6
+//		uiza-business-geography(ng-start-date='selectRange.start_date' ng-end-date='selectRange.end_date')
+//	.col-md-6
+//		uiza-business-player(ng-start-date='selectRange.start_date' ng-end-date='selectRange.end_date')
+//	.col-md-6
+//		uiza-business-traffic-source(ng-start-date='selectRange.start_date' ng-end-date='selectRange.end_date')

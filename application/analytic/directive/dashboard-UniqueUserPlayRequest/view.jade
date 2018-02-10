@@ -1,0 +1,34 @@
+.dashboard-UniqueUserPlayRequest
+	.box.box-warning
+		.box-header
+			h3.box-title
+				span.mr-5 Top Content
+				i.fa.fa-question-circle(sbd-tooltip ng-value='dataTooltip')
+			.clearfix
+		.box-body
+			.row
+				.col-md-6
+					ul.nav.nav-tabs.smaller.inline.display-inline
+						li.nav-item.active
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='onChangeTypeView("unique_user")') Unique Users
+						li.nav-item
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='onChangeTypeView("play_request")') Plays Requested
+						li.nav-item
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='onChangeTypeView("play_through")') Playthrough
+				.col-md-6
+					ul.nav.nav-pills.smaller.pull-right.inline.display-inline
+						li.nav-item.active
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='onChangeTypeInterval("1w")') Week
+						li.nav-item
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='onChangeTypeInterval("1M")') 1Month
+						li.nav-item
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='onChangeTypeInterval("3M")') 3Month
+						li.nav-item
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='onChangeTypeInterval("6M")') 6Month
+						li.nav-item
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='onChangeTypeInterval("1y")') Year
+			.row.mr-top-20
+				.col-md-12
+					.tab-content.clearfix
+						#uniqueUsers.tab-pane.active(aria-expanded='true')
+							canvas#topContentLineChart( width="500" height="500")

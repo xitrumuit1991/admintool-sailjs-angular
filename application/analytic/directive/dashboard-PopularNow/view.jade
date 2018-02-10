@@ -1,0 +1,40 @@
+.analytis-layout-entity-list
+	.box(class='{{form.class || "box-info"}}')
+		.box-header
+			h3.box-title
+				span.mr-5 {{form.title || "Title"}}
+				i.fa.fa-question-circle(sbd-tooltip ng-value='form.tooltip')
+			.clearfix
+		.box-body
+			.content
+				table.table
+					tbody
+						tr(ng-if='form.loading')
+							td(colspan='3').text-center.text-primary
+								i.fa.fa-spinner.fa-spin
+						tr(ng-if='!form.loading && items.length ==0')
+							td.text-center(colspan='3') There is not enough data to analyze
+						tr.item(ng-repeat='ite in items|  limitTo : form.limit : form.offset')
+							td
+								figure.entity-image
+									img(src='{{ ite.image || "//via.placeholder.com/127x70" }}')
+									span.duration(ng-if='ite.duration') {{ ite.duration | secondToTime : 'hh:mm:ss' }}
+							td
+								a.entity-title(href='javascript:;' ng-click='form.detailAsset(ite, $index)') {{ite.name}}
+							td
+								span.badget(ng-if='ite.value') {{ite.value | number : 0 }} views
+
+				.layout-pagination(ng-if='items.length > 0')
+					uib-pagination.table-records-pages(
+					total-items='form.totalItems',
+					ng-model='form.currentPage',
+					items-per-page='form.limit'
+					ng-change="form.onPageChange()"
+					max-size="5"
+					boundary-links="true"
+					rotate="false"
+					first-text='«'
+					last-text = '»'
+					next-text ='›'
+					previous-text= '‹'
+					)

@@ -1,0 +1,43 @@
+.no-print{
+  display: none !important;
+}
+
+
+.login-layout{
+  background: #f2f4f8!important;
+}
+.login-page{
+  margin: 0 auto;
+  width: 450px;
+  display: block;
+  margin-top: 10%;
+  height: auto;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 40px rgba(0,0,0,.1);
+  .box-header{
+    cursor: move;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .auth-header{
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    padding-left: 80px;
+    &:after{
+      content: "";
+      background-color: #047bf8;
+      width: 50px;
+      height: 7px;
+      border-radius: 2px;
+      display: block;
+      position: absolute;
+      bottom: -4px;
+      left: 10px;
+    }
+  }
+}

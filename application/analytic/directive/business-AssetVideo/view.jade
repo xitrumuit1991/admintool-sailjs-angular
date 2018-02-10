@@ -1,0 +1,72 @@
+.element-box.mt-5.business-asset-video
+	.row
+		.col-md-12
+			//h5 Asset Videos
+			h6.element-header
+				span.mr-5 Asset Videos
+				i.fa.fa-question-circle(uiza-tooltip ng-value='"Show video is played"')
+		.col-md-12
+			table.table.table-hover.table-striped
+				thead
+					th Name
+					//th Type
+					th Display
+					th Playes Requested
+					th Replayed
+					th Video starts
+					th Play though 25%
+					th Play though 50%
+					th Play though 75%
+					th Play though 100%
+				tbody
+					tr(ng-if='options.loading')
+						td(colspan='10').text-center.text-primary
+							i.fa.fa-spinner.fa-spin
+					tr(ng-if='!options.loading && assetInfo.length ==0')
+						td.text-center(colspan='3') There is not enough data to analyze
+					tr(ng-repeat='ite in assetInfo|  limitTo : options.limit : options.offset'
+					ng-click='goToDetailAssets(ite, $index)')
+						td(valign="middle" style='width: 550px; display: inline-block;')
+							.row.item-image-box
+								.col-md-3.pointer.padding-0(style='padding:0px;')
+									img.image.img-responsive( src='{{ ite.image || "//via.placeholder.com/125x70" }}')
+									.time(ng-if='ite.duration') {{ite.duration | secondToTime : 'hh:mm:ss' }}
+									i.icon-control-play
+								.col-md-8
+									.underline: a.link-video.pointer {{ite.name}}
+									.description {{ite.shortDescription}}
+						//td
+							span {{ite.type || "vod"}}
+						td
+							span {{ite.display | number }}
+						td
+							span {{ite.play_request | number }}
+						td
+							span {{ite.replayed | number }}
+						td
+							span {{ite.video_start | number }}
+						td
+							span {{ite.play_through_25 | number }}
+						td
+							span {{ite.play_through_50 | number }}
+						td
+							span {{ite['play_through_75'] | number }}
+						td
+							span {{ite['play_through_100'] | number }}
+
+		.col-md-12
+			.layout-pagination(ng-if='assetInfo.length > 0')
+				uib-pagination.table-records-pages(
+				total-items='options.totalItems',
+				ng-model='options.currentPage',
+				items-per-page='options.limit'
+				ng-change="onPageChange()"
+				max-size="5"
+				boundary-links="true"
+				rotate="false"
+				first-text='«'
+				last-text = '»'
+				next-text ='›'
+				previous-text= '‹'
+				)
+

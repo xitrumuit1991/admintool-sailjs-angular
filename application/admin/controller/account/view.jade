@@ -1,0 +1,10 @@
+div(ui-view='')
+	sbd-form-data(ng-model='item' ng-form-data='form')
+	.form-group(ng-if='!item.isAdmin')
+		.row
+			.col-md-12
+				label.col-form-label.col-sm-4()  Current permission
+			.col-md-3(ng-repeat='ite in userPermission')
+				span {{ite}}
+	.form-group
+		button.btn.btn-primary(type='submit' ng-click='submit()') Save

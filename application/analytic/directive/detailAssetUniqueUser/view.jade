@@ -1,0 +1,33 @@
+.element-box.margin-top-40
+	.os-tabs-w
+		.os-tabs-controls
+			ul.nav.nav-tabs.smaller
+				li.nav-item
+					a.nav-link.active(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='changeType("unique_user")') Unique Users
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='changeType("play_request")') Plays Requested
+				//li.nav-item
+				//	a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='changeType("hours_watched")') Hours Watched
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='changeType("play_through")') Playthrough
+
+
+			ul.nav.nav-pills.smaller
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#' ng-click='changeInterval("15m")') 15 minutes
+				li.nav-item
+					a.nav-link.active(data-toggle='tab', href='#' ng-click='changeInterval("1h")') Hour
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#' ng-click='changeInterval("1d")') Days
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#' ng-click='changeInterval("1w")') Week
+				li.nav-item
+					a.nav-link(data-toggle='tab', href='#' ng-click='changeInterval("1M")') Month
+
+		.tab-content
+			#uniqueUsers.tab-pane.active(aria-expanded='true')
+				canvas#uniqueUserChart( width="400" height="400")
+			#playRequested.tab-pane(aria-expanded='false')
+			#hourWatched.tab-pane(aria-expanded='false')
+			#playThrough.tab-pane(aria-expanded='false')
+

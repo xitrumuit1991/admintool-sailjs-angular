@@ -1,0 +1,128 @@
+span(ng-if='option.type=="text" && key != "id" '
+class="{{option.class}}")
+	| {{value}}
+
+span(ng-if='option.type=="text" && key == "id" '
+class="{{option.class}} col-limit-length-100"
+) {{value}}
+
+span(ng-if='option.type=="ingestProfile"' class='col-limit-length-200')
+	| {{getIngestProfileName()}}
+
+span(ng-if='option.type=="editable"' )
+	editable(
+	ng-model='value'
+	ng-on-change='onChange'
+	ng-url='option.url'
+	ng-id='model[option.keyUpdate]'
+	ng-field='key'
+	ng-input='option.input'
+	ng-source='option.options'
+	)
+.progressbar-small.progressbar(ng-if='option.type=="progressBar"')
+	| {{value}}%
+	.status-pill(
+	class='{{option.class}} {{option.classCondition[model[option.keyCondition]]}}'
+	data-title='Complete', data-toggle='tooltip')
+
+	//.progressbar-value.tooltip-button(
+	//class='{{option.class}} {{option.classCondition[model[option.keyCondition]]}}'
+	//title='',
+	//data-original-title='{{value}}%',
+	//style='width: {{value}}%;')
+	//  .progress-overlay
+a.media-video-title(ng-if='option.type=="href"' title='{{value}}' ui-sref='{{option.getHref(model)}}') {{value}}
+
+span(ng-if='option.type=="shortText"' title='{{value}}') {{value | limitTo : 10}}...
+span(ng-if='option.type=="longText"' )
+	textarea(style="width: 400px;overflow: auto;white-space: nowrap; border: none") {{value}}
+span(ng-if='option.type=="json"' )
+	pre {{value | json}}
+span(ng-if='option.type=="stringJson"' )
+	json-string(ng-model="value")
+span(ng-if='option.type=="download" && value' )
+	a.text-primary.fa.fa-download(href='{{option.originPath + value}}') &nbspDownload
+span(ng-if='option.type=="html"', ng-bind-html='value' )
+span(ng-if='option.type=="image"' )
+	img(ng-src='{{value}}' width='50px')
+
+
+span.media-video-title(
+style='cursor:pointer;' ng-if='option.type=="titleDetail"'
+ng-click='option.onclick(model.id)'
+)
+	| {{value}}
+
+div(ng-if='option.type=="array"') {{value.toString()}}
+	//| {{value | packagerDrmScheme}}
+
+
+span.preview-video-btn-wrapper(
+style='cursor:pointer;' ng-if='option.type=="videoPreview"'
+ng-click='option.onclick(model)'
+)
+	.videoPreview(style='width:100px;')
+		img(ng-src='{{value || "//via.placeholder.com/420x220"}}' width='100px' style='max-width:inherit')
+		a(href='javascript:;').preview-video-btn
+			i.icon-control-play
+
+span(ng-if='option.type=="date"')
+	|{{value | uizaDateFormat : "DD/MM/YYYY"}}
+
+span(ng-if='option.type=="datetime"')
+	|{{value | uizaDateFormat : "DD/MM/YYYY HH:mm"}}
+
+span(ng-if='option.type=="datetimesecond"')
+	|{{value | uizaDateFormat : "DD/MM/YYYY HH:mm:ss"}}
+
+span(ng-if='option.type=="timestamp"') {{value * 1000 | uizaDateFormat : "DD/MM/YYYY HH:mm"}}
+span(ng-if='option.type=="price"') {{value | currency : "" : 0 }}
+span(ng-if='option.type=="priceUsd"') {{value | currency : "" : 2 }}
+span(ng-if='option.type=="count"' ) {{value | currency : "" : 0 }}
+span(ng-if='option.type=="percent"') {{value | currency : "" : 0 }} %
+span(ng-if='option.type=="gender"') {{value == 0 ? 'Male' : 'Female'}}
+span(ng-if='option.type=="iconStatus"' style='position:relative;')
+	.status-pill(class='{{option.condition[value] || "red" }}')
+	i.icon-question(
+	style='position: absolute;top: -5px;font-size: 10px;'
+	ng-if='option.description'
+	uiza-tooltip
+	data-placement='top',
+	data-toggle='tooltip',
+	data-title='sadfasd'
+	ng-value='option.description'
+	)
+
+span(ng-if='option.type=="status"')
+	span.text-primary(ng-if='value==1') Active
+	span.text-warning(ng-if='value==2') Inpreview
+	span.text-danger(ng-if='value !=1 && value != 2 ') Unactive
+
+span.uiza-status-edit-wrapper(ng-if='option.type=="statusEdit"')
+	.uiza-status-button(ng-class='{"uiza-status-button-disable": (value!=1 && value!=3 && value!=4)}')
+		.uiza-status-point(ng-class='{"uiza-status-point-right": (value==1 || value==3 || value==4)}' ng-click='model = option.onClick(model)')
+
+span(class='{{option.class}} {{option.classCondition[value]}}'
+ng-if='option.type=="condition"'
+) {{option.condition[value] || "Unknown"}}
+span(ng-if='option.type=="filter"' style="text-align: right;") {{option.filter(value)}}
+span(ng-if='option.type=="number"' style="text-align: right;") {{value}}
+span(ng-if='option.type=="currency"' style="text-align: right;")
+	span(ng-if="value") $
+	span(ng-if="!value") $0
+	span(ng-if="value") {{value | number:0}}
+span(ng-if='option.type=="actionBox"' style="text-align: center;")
+	input(type='checkbox' ng-model='model.checked')
+
+
+home-task-detail(ng-if='option.type=="trackTaskProcess"'
+ng-option='option'
+ng-value='value'
+ng-model='model')
+
+
+div(ng-if='option.type=="adminGroup"')
+	sbd-admin-group(ng-model='model[key]')
+
+
+

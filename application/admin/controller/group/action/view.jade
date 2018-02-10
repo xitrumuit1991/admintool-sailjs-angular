@@ -1,0 +1,9 @@
+sbd-form-data(ng-model='item' ng-form-data='form')
+.form-group
+	label.col-form-label.col-sm-4()  Set permission
+.form-group
+	.row
+		.col-md-12
+			permission-list(ng-model='item.permissionList' ng-data-out='dataPermission')
+.form-group
+	button.btn.btn-primary(type='submit' ng-click='submit()') Save

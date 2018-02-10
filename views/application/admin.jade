@@ -1,0 +1,37 @@
+extends ../layout
+block body
+	.full-height.full-width(ui-view='')
+
+block script
+	// SCRIPTS
+	script(src="/application/app.js")
+	script(src="/application/appCtrl.js")
+	script(src="/application/admin/index.js")
+	script(src="/application/admin/controller/account/index.js")
+	script(src="/application/admin/controller/group/action/index.js")
+	script(src="/application/admin/controller/group/index.js")
+	script(src="/application/admin/controller/user/action/index.js")
+	script(src="/application/admin/controller/user/index.js")
+	script(src="/application/admin/directive/permissionList/index.js")
+	script(src="/application/admin/service/ApiAdminService.js")
+	script(src="/application/master/directive/admin_group/index.js")
+	script(src="/application/master/directive/checkbox/index.js")
+	script(src="/application/master/directive/datatable/index.js")
+	script(src="/application/master/directive/datePicker/index.js")
+	script(src="/application/master/directive/dateTimePicker/index.js")
+	script(src="/application/master/directive/formdata/index.js")
+	script(src="/application/master/directive/home_block/index.js")
+	script(src="/application/master/directive/left_menu_sidebar/index.js")
+	script(src="/application/master/directive/menu_fix_top/index.js")
+	script(src="/application/master/directive/popup-alert/index.js")
+	script(src="/application/master/directive/readObjectKey/index.js")
+	script(src="/application/master/directive/tooltip/index.js")
+	script(src="/application/master/directive/user_logged_top/index.js")
+	script(src="/application/master/factory/AuthInterceptor.js")
+	script(src="/application/master/filter/dateFormat.js")
+	script(src="/application/master/filter/formatBytes.js")
+	script(src="/application/master/filter/secondToHHmmss.js")
+	script(src="/application/master/service/ApiService.js")
+	script(src="/application/master/service/UserService.js")
+	script(src="/application/master/service/UtitService.js")
+	// SCRIPTS END
