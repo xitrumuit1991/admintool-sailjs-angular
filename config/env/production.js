@@ -3,19 +3,19 @@ module.exports = {
   connections:{
     sqlServer:{
       adapter:"sails-mysql",
-      host:"172.40.5.7",
+      host:"localhost",
       port:3306,
       pool:true,
       connectionLimit:32,
       waitForConnections:true,
       user:'root',
-      password:'123456789',
-      pass:'123456789',
+      password:'',
+      pass:'',
       database:"sbd_admintool"
     }
   },
   session:{
-    host: '172.40.5.7',
+    host: 'localhost',
     port: 6379,
     pass: false,
     password: false,
