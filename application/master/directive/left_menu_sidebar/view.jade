@@ -10,22 +10,30 @@ aside.left-side.sidebar-offcanvas
 				a(href='javascript:void(0);')
 					i.fa.fa-circle.text-success
 					span  Online
-		ul.sidebar-menu
+		ul.sidebar-menu#menu-left-sidebar
 			li
 				a(href='/')
 					i.fa.fa-dashboard
 					span Home
 			li(ng-repeat='ite in menuleft' ng-class='{"treeview" : ite.submenu }')
-				a.pointer(href='{{ite.href}}' ng-if=' ite.home ')
+				a.pointer.no-underline(
+				href='javascript:void(0);'
+				ng-if=' ite.submenu'
+				)
+					i(class='{{ite.icon}}' ng-if='ite.icon')
+					span {{ite.title}}
+					i.fa.fa-angle-left.pull-right
+
+				a.pointer(href='{{ite.href}}' ng-if=' ite.home && !ite.submenu')
 					i(class='{{ite.icon}}' ng-if='ite.icon')
 					span {{ite.title}}
 
-				a.pointer(ui-sref='{{ite.href}}' ng-if=' !ite.home' )
+				a.pointer(ui-sref='{{ite.href}}' ng-if=' !ite.home && !ite.submenu ' )
 					i(class='{{ite.icon}}' ng-if='ite.icon')
 					span {{ite.title}}
 
-				ul.treeview-menu(ng-if='ite.submenu')
+				ul.treeview-menu(ng-show='ite.submenu')
 					li(ng-repeat='sub in ite.submenu')
 						a.pointer(href='{{sub.href}}' ui-sref='{{sub.href}}')
-							i(class='{{sub.icon}}' ng-if='sub.icon')
-							span {{sub.title}}
+							i.mr-left-10(class="fa fa-angle-double-right")
+							span.mr-left-5 {{sub.title}}

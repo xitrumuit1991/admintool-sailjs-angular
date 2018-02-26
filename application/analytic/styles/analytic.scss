@@ -238,3 +238,48 @@
     border-radius: 4px 4px 0 0;
   }
 }
+
+.small-box{
+  h3{
+    font-size: 20px;
+  }
+  .icon {
+    font-size: 60px;
+  }
+  &:hover{
+    .icon {
+      font-size: 70px;
+      animation-name: analytic_tansformAnimation;
+      animation-duration: .5s;
+      animation-iteration-count: 1;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+      -webkit-animation-name: analytic_tansformAnimation;
+      -webkit-animation-duration: .5s;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-timing-function: ease;
+      -webkit-animation-fill-mode: forwards;
+      -moz-animation-name: analytic_tansformAnimation;
+      -moz-animation-duration: .5s;
+      -moz-animation-iteration-count: 1;
+      -moz-animation-timing-function: ease;
+      -moz-animation-fill-mode: forwards;
+    }
+  }
+}
+@keyframes analytic_tansformAnimation {
+  from {
+    font-size: 60px;
+  }
+  to {
+    font-size: 70px;
+  }
+}
+@-webkit-keyframes analytic_tansformAnimation {
+  from {
+    font-size: 60px;
+  }
+  to {
+    font-size: 70px;
+  }
+}

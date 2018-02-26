@@ -8,20 +8,40 @@ _config.$inject = [ "$stateProvider", "$urlRouterProvider"]
 
 _run = ($rootScope)->
   $rootScope.leftSidebar = [
-    title : 'Dashboard '
-#    href : 'analytic.dashboard'
-    href : 'analytic'
+    title : 'Content Report'
+    href : 'analytic.content-report'
     icon : 'fa fa-pie-chart'
     bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
+    submenu : [
+      title : 'Top Content'
+      href : 'analytic.content-report.top-content'
+    ,
+      title : 'Content Drop-off'
+      href : 'analytic.content-report.content-drop-off'
+    ]
   ,
-    title : 'Business'
-    href : 'analytic.business'
-    icon : 'fa fa-bar-chart'
+    title : 'User & Communnity'
+    href : 'analytic.user-community'
+    icon : 'fa fa-line-chart'
+    bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
+    submenu : [
+      title : 'Geographic'
+      href : 'analytic.user-community.geographic'
+    ]
+  ,
+    title : 'Systems Reports'
+    href : 'analytic.system-report'
+    icon : 'fa fa-area-chart'
     bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
   ,
-    title : 'Line chart'
-    href : 'analytic.line-chart'
-    icon : 'fa fa-line-chart'
+    title : 'Live Report'
+    href : 'analytic.live-report'
+    icon : 'fa fa-align-center'
+    bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
+  ,
+    title : 'Live Realtime Dashboard'
+    href : 'analytic.live-realtime-report'
+    icon : 'fa fa-snowflake-o'
     bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
   ]
 
