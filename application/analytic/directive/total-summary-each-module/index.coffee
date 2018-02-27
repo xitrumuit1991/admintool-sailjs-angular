@@ -53,6 +53,7 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
     scope :
       form : '=ngForm'
       data : '=ngData'
+      title : '=ngTitle'
     templateUrl : '/template/analytic/directive/total-summary-each-module/view.html'
     link : link
   return directive

@@ -1,12 +1,18 @@
-.row.total-summary-each-module
-	.col-md-12
-		h1 Total
-		.element-box-white
-			.row.pd-top-10.pd-bottom-10
-				.col-md-2(ng-repeat='frm in form' style='{{!$last ? "border-right: 1px solid #ccc;" : "" }}')
-					.pd-left-5.pd-top-10.pd-bottom-10
-						label.block.mr-bottom-10.title {{frm.title}}
-						span.block.value(ng-if='frm.type == "text" ') {{ (data[frm.key] || frm.value) }}
-						span.block.value(ng-if='frm.type == "number" ') {{ (data[frm.key] || frm.value) | number : 0 }}
-						span.block.value(ng-if='frm.type == "percent" ') {{ (data[frm.key] || frm.value) | number : 2  }} %
-						span.block.value(ng-if='frm.type == "time" ') {{ (data[frm.key] || frm.value) | secondToTime : 'hh:mm:ss' }}
+.box.box-danger.mr-top-50
+	.box-header
+		h3.box-title
+			i.fa.fa-check
+			span.mr-5 {{title || "Total Summary"}}
+			i.fa.fa-question-circle(sbd-tooltip ng-value='dataTooltip' ng-if='dataTooltip')
+		.clearfix
+	.box-body
+		.row.total-summary-each-module
+			.col-md-12
+				.row
+					.col-md-2(ng-repeat='frm in form' style='{{!$last ? "border-right: 1px solid #ccc;" : "" }}')
+						.pd-left-5.pd-top-10.pd-bottom-10
+							label.block.mr-bottom-10.title {{frm.title}}
+							span.block.value(ng-if='frm.type == "text" ') {{ (data[frm.key] || frm.value) }}
+							span.block.value(ng-if='frm.type == "number" ') {{ (data[frm.key] || frm.value) | number : 0 }}
+							span.block.value(ng-if='frm.type == "percent" ') {{ (data[frm.key] || frm.value) | number : 2  }} %
+							span.block.value(ng-if='frm.type == "time" ') {{ (data[frm.key] || frm.value) | secondToTime : 'hh:mm:ss' }}

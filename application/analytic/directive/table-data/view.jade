@@ -1,7 +1,8 @@
 .box.box-danger
 	.box-header
 		h3.box-title
-			span.mr-5 Detail
+			i.fa.fa-check
+			span.mr-5 {{title || "Data table"}}
 			i.fa.fa-question-circle(sbd-tooltip ng-value='dataTooltip' ng-if='dataTooltip')
 		.clearfix
 	.box-body
@@ -19,3 +20,18 @@
 									span(ng-if='frm.type == "number" ') {{ (ite[frm.key] ) | number : 0 }}
 									span(ng-if='frm.type == "percent" ') {{ (ite[frm.key] ) | number : 2  }} %
 									span(ng-if='frm.type == "time" ') {{ (ite[frm.key]) | secondToTime : 'hh:mm:ss' }}
+				.col-md-12.text-right
+					.layout-pagination
+						uib-pagination.table-records-pages(
+						total-items='100',
+						ng-model='currentPage',
+						items-per-page='10'
+						ng-change="onPageChange()"
+						max-size="5"
+						boundary-links="true"
+						rotate="false"
+						first-text='«'
+						last-text = '»'
+						next-text ='›'
+						previous-text= '‹'
+						)

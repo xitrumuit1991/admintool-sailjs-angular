@@ -60,6 +60,7 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
     scope :
       form : '=ngForm'
       data : '=ngData'
+      title : '=ngTitle'
     templateUrl : '/template/analytic/directive/table-data/view.html'
     link : link
   return directive
