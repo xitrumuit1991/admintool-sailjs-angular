@@ -283,3 +283,36 @@
     font-size: 70px;
   }
 }
+
+
+.element-box-white{
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 5px 5px 50px #ececec;
+}
+
+
+.total-summary-each-module{
+  .title{
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: left;
+    color: #323c47;
+  }
+  .value{
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #323c47;
+  }
+}

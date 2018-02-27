@@ -1,0 +1,21 @@
+.box.box-danger
+	.box-header
+		h3.box-title
+			span.mr-5 Detail
+			i.fa.fa-question-circle(sbd-tooltip ng-value='dataTooltip' ng-if='dataTooltip')
+		.clearfix
+	.box-body
+		.total-summary-each-module
+			.row
+				.col-md-12
+					table(class='table table-striped table-hover')
+						thead
+							tr
+								th(ng-repeat='frm in form' ) {{frm.title}}
+						tbody
+							tr(ng-repeat='ite in data' )
+								td(ng-repeat='frm in form' )
+									span(ng-if='frm.type == "text" ') {{ (ite[frm.key] ) }}
+									span(ng-if='frm.type == "number" ') {{ (ite[frm.key] ) | number : 0 }}
+									span(ng-if='frm.type == "percent" ') {{ (ite[frm.key] ) | number : 2  }} %
+									span(ng-if='frm.type == "time" ') {{ (ite[frm.key]) | secondToTime : 'hh:mm:ss' }}
