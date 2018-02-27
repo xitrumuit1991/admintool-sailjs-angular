@@ -7,9 +7,9 @@ aside.right-side
 					span.text-uppercase {{ite.name}}
 	.clearfix
 	section.content
-		sbd-home-block(ng-type='"modulePage"')
-		//sbd-dashboard-nav-view()
 		div(ui-view='')
+			.row
+				sbd-home-block(ng-type='"modulePage"')
 			.row.mr-top-20
 				.col-md-4(style='padding-right:8px;')
 					sbd-dashboard-total-summary()

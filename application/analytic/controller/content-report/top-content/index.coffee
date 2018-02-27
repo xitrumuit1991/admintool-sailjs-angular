@@ -1,8 +1,8 @@
 _config = ($stateProvider) ->
-  $stateProvider.state "analytic.content-report",
-    url : "/content-report"
-    templateUrl  : '/template/analytic/controller/content-report/view.html'
-    controller: 'analytic.controller.content-report.Ctrl'
+  $stateProvider.state "analytic.content-report.top-content",
+    url : "/top-content"
+    templateUrl  : '/template/analytic/controller/content-report/top-content/view.html'
+    controller: 'analytic.controller.content-report.top-content.Ctrl'
 _config.$inject = [ "$stateProvider"]
 
 _run = ($rootScope)->
@@ -94,6 +94,6 @@ _controller.$inject = ['$rootScope', '$scope', '$http', 'ApiService',
 ]
 
 window.app
-.config _config
-.run _run
-.controller 'analytic.controller.content-report.Ctrl', _controller
+  .config _config
+  .run _run
+  .controller 'analytic.controller.content-report.top-content.Ctrl', _controller

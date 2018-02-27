@@ -1,5 +1,26 @@
 .element-wrapper
 	div(ui-view='')
 		.row.mr-top-20
-			.col-md-12
-				h1 content-report
+			.col-lg-3.col-xs-6
+				.small-box(class='bg bg-green')
+					.inner
+						h3.white.no-underline.pointer
+							a(ui-sref='analytic.content-report.top-content')
+								span.white Top Content
+						p &nbsp;
+					.icon: i.fa.fa-line-chart
+					a.small-box-footer.pointer(ui-sref='analytic.content-report.top-content')
+						span.mr-right-5 More info
+						i.fa.fa-arrow-circle-right
+
+			.col-lg-3.col-xs-6
+				.small-box(class='bg bg-danger')
+					.inner
+						h3.white.no-underline.pointer
+							a(ui-sref='analytic.content-report.content-drop-off')
+								span.white Content Drop Off
+						p &nbsp;
+					.icon: i.fa.fa-area-chart
+					a.small-box-footer.pointer(ui-sref='analytic.content-report.content-drop-off' )
+						span.mr-right-5 More info
+						i.fa.fa-arrow-circle-right
