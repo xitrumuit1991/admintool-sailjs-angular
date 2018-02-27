@@ -9,6 +9,18 @@ _run = ($rootScope)->
 _run.$inject = ['$rootScope']
 
 _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $timeout, $location, $interval) ->
+  $scope.param =
+    startDate : ''
+    endDate : ''
+
+  $scope.$watch 'param.startDate',(data)->
+    return unless data
+    console.log '$scope.param.startDate',$scope.param.startDate
+
+  $scope.$watch 'param.endDate',(data)->
+    return unless data
+    console.log '$scope.param.endDate',$scope.param.endDate
+
 #  $scope.selectRange =
 #    start_date : moment().add(-1,'days').format('DD/MM/YYYY')
 #    end_date : moment(new Date()).format('DD/MM/YYYY')
@@ -86,13 +98,8 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
 
   return
 _controller.$inject = ['$rootScope', '$scope', '$http', 'ApiService',
-  'UtitService',
-  '$state',
-  '$timeout',
-  '$location',
-  '$interval'
+  'UtitService', '$state', '$timeout', '$location', '$interval'
 ]
-
 window.app
   .config _config
   .run _run

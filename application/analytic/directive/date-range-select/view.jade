@@ -1,0 +1,17 @@
+form.form-inline.mr-bottom-10
+	label.mr-right-5  From
+	sbd-date-picker(data-model='selectRange.start_date')
+
+	label.mr-right-5.mr-left-5 To
+	sbd-date-picker(data-model='selectRange.end_date')
+
+	label.mr-right-5.mr-left-15 Date Range
+	select.form-control.inline(ng-model='selectRange.perios')
+		option(value='') Select
+		option(ng-repeat='ite in listSelectPeriods' value='{{ite.value}}') {{ite.label}}
+
+	label.mr-right-5.mr-left-15 Category
+	select.form-control.inline
+		option(value='') Category
+		option(value='') Category 1
+		option(value='') Category 2

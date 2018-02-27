@@ -65,7 +65,7 @@ window.app = angular.module 'sbd-admin', [
   'ngTagsInput',
   'ngSanitize',
   'nvd3',
-  'angularjs-datetime-picker',
+#  'angularjs-datetime-picker',
   'chart.js',
   'oc.lazyLoad',
   'googlechart',

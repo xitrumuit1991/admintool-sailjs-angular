@@ -11,7 +11,6 @@ directive = ($rootScope, $document, UtitService) ->
       })
       selectDate = (ev, picker) ->
         $scope.model = "#{dateEl.val()}"
-        
         $scope.$apply()
       dateEl.on 'hide.daterangepicker', selectDate
       dateEl.on 'apply.daterangepicker', selectDate
