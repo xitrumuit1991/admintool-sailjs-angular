@@ -1,5 +1,8 @@
 directive = ($rootScope, $document) ->
   link = ($scope, element, attr) ->
+    $scope.goLink = (link)->
+      return window.location.href = link;
+
     $rootScope.$watch 'topSidebar',(data)->
       return unless data
       if $scope.type == 'homePage'
