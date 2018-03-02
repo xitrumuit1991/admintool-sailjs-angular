@@ -1,0 +1,24 @@
+.element-wrapper
+	div(ui-view='')
+		.box.box-danger
+			.box-header
+				h3.box-title
+					i.fa.fa-check
+					span.mr-5 Live Content (in past 36 hours)
+					i.fa.fa-question-circle(sbd-tooltip ng-value='dataTooltip' ng-if='dataTooltip')
+				.clearfix
+			.box-body
+				.row
+					.col-md-12
+						select.form-control.inline-block.width-200
+							option Live now only
+						button.btn.btn-primary.btn-sm.pull-right
+							i.fa.fa-download.mr-right-5
+							span Export to CSV
+				.row.mr-top-20.live-realtime.pd-bottom-50
+					.col-md-3(ng-repeat='ite in form')
+						.item
+							.value
+								span(ng-if='ite.type == "number"') {{data[ite.key] | number : 2}}
+							.title {{ite.title}}
+

@@ -1,22 +1,23 @@
 .row
 	.col-lg-3.col-xs-6( ng-repeat='item in menuHomeBlock' )
-		.small-box(class='{{item.bg}}' ng-if='type=="homePage"')
+		.small-box.pointer(class='{{item.bg}}' ng-if='type=="homePage"')
 			.inner
 				h3.white.no-underline.pointer
 					a(href='{{item.href}}'  style='text-decoration: none;')
 						span.white {{item.title}}
 				p &nbsp;
 			.icon: i(class='{{item.icon}}')
-			a.small-box-footer.pointer(href='{{item.href}}' style='text-decoration: none;')
+			a.no-underline.small-box-footer.pointer(href='{{item.href}}' style='text-decoration: none;')
 				span.mr-right-5 More info
 				i.fa.fa-arrow-circle-right
 
 
-		.small-box(class='{{item.bg}}' ng-if='type =="modulePage"')
+		.small-box.pointer(class='{{item.bg}}' ng-if='type =="modulePage"'
+		ui-sref='{{item.href}}'
+		)
 			.inner
 				h3.white.no-underline.pointer
-					a(ui-sref='{{item.href}}' style='text-decoration: none;')
-						span.white {{item.title}}
+					span.white {{item.title}}
 				p &nbsp;
 			.icon: i(class='{{item.icon}}')
 			a.small-box-footer.pointer(ui-sref='{{item.href}}' style='text-decoration: none;')

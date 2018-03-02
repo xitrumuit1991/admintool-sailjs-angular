@@ -2,13 +2,12 @@
 	div(ui-view='')
 		.row.mr-top-20
 			.col-lg-3.col-xs-6
-				.small-box(class='bg bg-green')
+				.small-box.pointer(class='bg bg-green' ui-sref='analytic.user-community.geographic')
 					.inner
-						h3.white.no-underline.pointer
-							a(ui-sref='analytic.user-community.geographic')
-								span.white Geographic
+						h3.white.no-underline
+							span.white Geographic
 						p &nbsp;
 					.icon: i.fa.fa-line-chart
-					a.small-box-footer.pointer(ui-sref='analytic.user-community.geographic')
+					a.no-underline.small-box-footer.pointer(ui-sref='analytic.user-community.geographic')
 						span.mr-right-5 More info
 						i.fa.fa-arrow-circle-right

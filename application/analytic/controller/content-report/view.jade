@@ -2,25 +2,23 @@
 	div(ui-view='')
 		.row.mr-top-20
 			.col-lg-3.col-xs-6
-				.small-box(class='bg bg-green')
+				.small-box.pointer(class='bg bg-green' ui-sref='analytic.content-report.top-content')
 					.inner
 						h3.white.no-underline.pointer
-							a(ui-sref='analytic.content-report.top-content')
-								span.white Top Content
+							span.white Top Content
 						p &nbsp;
 					.icon: i.fa.fa-line-chart
-					a.small-box-footer.pointer(ui-sref='analytic.content-report.top-content')
+					a.no-underline.small-box-footer.pointer(ui-sref='analytic.content-report.top-content')
 						span.mr-right-5 More info
 						i.fa.fa-arrow-circle-right
 
 			.col-lg-3.col-xs-6
-				.small-box(class='bg bg-danger')
+				.small-box.pointer(class='bg bg-danger' ui-sref='analytic.content-report.content-drop-off')
 					.inner
 						h3.white.no-underline.pointer
-							a(ui-sref='analytic.content-report.content-drop-off')
-								span.white Content Drop Off
+							span.white Content Drop Off
 						p &nbsp;
 					.icon: i.fa.fa-area-chart
-					a.small-box-footer.pointer(ui-sref='analytic.content-report.content-drop-off' )
+					a.no-underline.small-box-footer.pointer(ui-sref='analytic.content-report.content-drop-off' )
 						span.mr-right-5 More info
 						i.fa.fa-arrow-circle-right

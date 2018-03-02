@@ -26,14 +26,12 @@ directive = ($rootScope, $document, $timeout) ->
               isActive = true
               btn.children(".fa-angle-left").first().removeClass("fa-angle-left").addClass("fa-angle-down")
               btn.parent("li").addClass("active")
-      ,1000)
+      ,500)
 
     $rootScope.$watch 'leftSidebar',(data)->
       return unless data
       $scope.menuleft = $rootScope.leftSidebar
-      $timeout(()->
-        initMenuSlideUpDown()
-      ,500)
+      initMenuSlideUpDown()
     ,true
 
     return

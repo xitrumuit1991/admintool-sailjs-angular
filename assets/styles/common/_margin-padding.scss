@@ -1,3 +1,10 @@
+$commonSizes: 0 5 10 15 20 25 30 35 40 45 50 60 70 80 90 100 120 140 150 160 170 180 190 200;
+@each $size in $commonSizes {
+  .width-#{$size} {
+    width: #{$size}px;
+  }
+}
+
 $commonSizes: 0 5 10 15 20 25 30 35 40 45 50;
 @each $size in $commonSizes {
   .mr-top-#{$size} {

@@ -40,7 +40,7 @@ _run = ($rootScope)->
     bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
   ,
     title : 'Live Realtime Dashboard'
-    href : 'analytic.live-realtime-report'
+    href : 'analytic.live-realtime'
     icon : 'fa fa-snowflake-o'
     bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
   ]
