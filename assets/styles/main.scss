@@ -14,3 +14,10 @@
 {
   font-weight: 500;
 }
+
+.left-side.sidebar-offcanvas{
+  z-index: 9999 !important;
+  #menu-left-sidebar{
+    z-index: 9999 !important;
+  }
+}
