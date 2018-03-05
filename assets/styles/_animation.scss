@@ -1,0 +1,14 @@
+.fadeIn {
+  &.ng-hide {
+    -webkit-animation: fadeIn 0s;
+    -moz-animation: fadeIn 0s;
+    -ms-animation: fadeIn 0s;
+    animation: fadeIn 0s;
+  }
+  &.ng-leave {
+    -webkit-animation: fadeOut 0s;
+    -moz-animation: fadeOut 0s;
+    -ms-animation: fadeOut 0s;
+    animation: fadeOut 0s;
+  }
+}

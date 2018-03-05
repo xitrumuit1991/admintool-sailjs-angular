@@ -69,6 +69,7 @@ window.app = angular.module 'sbd-admin', [
   'chart.js',
   'oc.lazyLoad',
   'googlechart',
+  'ngAnimate'
 ]
 
 angular.module('sbd-admin').constant("GlobalConfig", config)
