@@ -1,0 +1,14 @@
+.element-wrapper
+	div(ui-view='')
+		.row
+			.col-md-12
+				h1: b Live Report
+			.col-md-12
+				sbd-date-range-select(ng-start-date='param.startDate' ng-end-date='param.endDate')
+			.col-md-12
+				sbd-total-summary-each-module(ng-form='null' ng-data='null')
+			.col-md-12.mr-top-50
+				uiza-dashboard-unique-user-play-request()
+			.col-md-12.mr-top-50
+				sbd-table-data(ng-form='null' ng-data='null' ng-title='"Detail"')
+

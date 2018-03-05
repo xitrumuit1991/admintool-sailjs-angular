@@ -33,6 +33,22 @@ _run = ($rootScope)->
     href : 'analytic.system-report'
     icon : 'fa fa-area-chart'
     bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
+    submenu : [
+      title : 'OS Report'
+      href : 'analytic.system-report.os'
+      icon : 'fa fa-snowflake-o'
+      bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
+    ,
+      title : 'Browser Report'
+      href : 'analytic.system-report.browser'
+      icon : 'fa fa-snowflake-o'
+      bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
+    ,
+      title : 'Platform Report'
+      href : 'analytic.system-report.platform'
+      icon : 'fa fa-snowflake-o'
+      bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
+    ]
   ,
     title : 'Live Report'
     href : 'analytic.live-report'
