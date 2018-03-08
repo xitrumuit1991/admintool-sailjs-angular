@@ -5,3 +5,20 @@ p.left-info-user-email{
   white-space: nowrap;
   overflow: hidden;
 }
+
+//----------------------------
+.left-side.collapse-left {
+  left: -220px;
+  transition-duration:  0.5s;
+}
+.left-side{
+  left: 0px;
+  transition-duration:  0.5s;
+}
+.right-side.strech{
+  transition-duration:  0.5s;
+}
+.right-side{
+  transition-duration:  0.5s;
+}
+//----------------------------
