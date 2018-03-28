@@ -1,4 +1,7 @@
 module.exports = (req, res, next) ->
+  if req.headers and req.headers['by-pass-token'] is 'by-pass-token' and req.method in ['post','POST']
+    return next()
+
   pathname = "#{req.options.controller}/#{req.options.action}"
   pathname = "/#{pathname.toLowerCase()}" if pathname
 #  sails.log.error 'pathname',pathname

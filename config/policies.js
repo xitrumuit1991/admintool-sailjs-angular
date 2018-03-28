@@ -26,4 +26,7 @@ module.exports.policies = {
   },
 
   //analytic module
+  'analytic/contentReportController': {
+    '*': ['sessionAuth', 'checkPermission'],
+  },
 };

@@ -37,6 +37,10 @@ module.exports.routes = {
   'GET /analytic': 'admin/pageController.analytic',
 
 
+  //Analytic
+  'POST /analytic/content-report/top-content-table' : 'analytic/contentReportController.topContentTable'
+
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

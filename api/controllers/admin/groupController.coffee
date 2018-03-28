@@ -17,7 +17,7 @@ exports.find = (req, res)->
 @apiName Get A group info
 @apiGroup Admin-Group
 @apiPermission /admin/group/findone
-@apiParam {string} [id] in query
+@apiParam {string} id in query
 ###
 exports.findOne = (req, res)->
   param = req.allParams()
@@ -45,7 +45,7 @@ exports.create = (req, res)->
 @apiName Put Update group
 @apiGroup Admin-Group
 @apiPermission /admin/group/update
-@apiParam {string} [id] in query
+@apiParam {string} id in query
 @apiParam {object} data in body of put
 ###
 exports.update = (req, res)->
@@ -61,7 +61,7 @@ exports.update = (req, res)->
 @apiName Delete One group
 @apiGroup Admin-Group
 @apiPermission /admin/group/delete
-@apiParam {string} [id] in query
+@apiParam {string} id in query
 ###
 exports.delete = (req, res)->
   data = req.allParams()

@@ -7,7 +7,7 @@ module.exports =
     id :
       type : "string"
       primaryKey : true
-      defaultsTo : ()-> uuid.v4()
+      defaultsTo : ()-> return uuid.v4()
       unique : true
       index : true
     isAdmin :
@@ -52,6 +52,11 @@ module.exports =
       email : 'duybq@mail.com'
       password : 'duybq123!@#'
       isAdmin : 1
+    ,
+      name : 'thvli'
+      email : 'thvli@mail.com'
+      password : 'thvli123!@#'
+      isAdmin : 1
     ]
     _.map dataUsers,(data)->
       user.findOneByEmail(data.email).exec (error, userData)->
@@ -61,6 +66,7 @@ module.exports =
         user.create(data).exec (error, userCreated)->
           if error
             return sails.log.error error
+          console.log 'initUserAdminData; userCreated=',userCreated
 
   beforeCreate : (values, cb) ->
     if values.password then values.password = md5(values.password)

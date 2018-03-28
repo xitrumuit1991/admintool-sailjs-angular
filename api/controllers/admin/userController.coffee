@@ -30,7 +30,7 @@ module.exports.find = (req, res)->
 @apiName Get A user info
 @apiGroup Admin-User
 @apiPermission /admin/user/findone
-@apiParam {string} [id] in query
+@apiParam {string} id in query
 ###
 module.exports.findOne = (req, res)->
   data = req.allParams()
@@ -66,7 +66,7 @@ module.exports.create = (req, res)->
 @apiName Put Update user
 @apiGroup Admin-User
 @apiPermission /admin/user/update
-@apiParam {string} [id] in query
+@apiParam {string} id in query
 @apiParam {object} data in body of put
 ###
 module.exports.update = (req, res)->
@@ -84,7 +84,7 @@ module.exports.update = (req, res)->
 @apiName Update My Account
 @apiGroup Admin-User
 @apiPermission /admin/user/updatemyaccount
-@apiParam {string} [id] in query
+@apiParam {string} id in query
 @apiParam {object} data in body of put
 ###
 module.exports.updatemyaccount = (req, res)->
@@ -110,7 +110,7 @@ module.exports.updatemyaccount = (req, res)->
 @apiName Delete One User
 @apiGroup Admin-User
 @apiPermission /admin/user/delete
-@apiParam {string} [id] in query
+@apiParam {string} id in query
 ###
 exports.delete = (req, res)->
   data = req.allParams()
