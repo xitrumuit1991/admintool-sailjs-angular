@@ -84,9 +84,9 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
       })
     console.log '$scope.data',$scope.data
     params=
-      partner_code: "thvli",
-      start : moment($scope.param.startDate,'DD/MM/YYYY').unix(),
-      end : moment($scope.param.endDate,'DD/MM/YYYY').unix(),
+      partner_code: "thvli"
+      start : moment($scope.param.startDate,'YYYY-MM-DD').unix()
+      end : moment($scope.param.endDate,'YYYY-MM-DD').unix()
     AnalyticService.contentReport.topContentTable params, (err, result)->
       return if err or !result
       console.log 'contentReport.topContentTable; result=', result
