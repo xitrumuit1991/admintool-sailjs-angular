@@ -48,19 +48,25 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
       avg_view_drop_off: 35.5
     ]
 
-    $scope.$watch 'form',(data)->
-      $scope.form = initForm unless data
+    $scope.$watch 'formTable',(data)->
+      $scope.formTable = initForm unless data
+#      console.log '$scope.formTable',$scope.formTable
 
-    $scope.$watch 'data',(data)->
-      $scope.data = initData unless data
+    $scope.$watch 'dataTable',(data)->
+      $scope.dataTable = initData unless data
+#      console.log '$scope.dataTable',$scope.dataTable
+
+    $scope.$watch 'pagination',(data)->
+      return unless data
 
     return null
   directive =
     restrict : 'E'
     scope :
-      form : '=ngForm'
-      data : '=ngData'
+      formTable : '=ngFormTable'
+      dataTable : '=ngDataTable'
       title : '=ngTitle'
+      pagination : '=ngPagination'
     templateUrl : '/template/analytic/directive/table-data/view.html'
     link : link
   return directive

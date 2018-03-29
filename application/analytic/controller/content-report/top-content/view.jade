@@ -1,20 +1,4 @@
-.modal.popup-alert-confirm(id="{{topContenModal.id}}" tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true'
-data-backdrop="static"
-data-keyboard="false"
-)
-	.modal-dialog.modal-lg(role='document')
-		.modal-content
-			.modal-header
-				h5.modal-title.inline Test
-				button.close(type='button', data-dismiss='modal', aria-label='Close')
-					span(aria-hidden='true') ×
-			.modal-body.text-center()
-				|modal.message
-			.modal-footer
-				.btn-center
-					button.btn.btn-secondary(type='button', data-dismiss='modal' ) Close
-					button.btn.btn-primary(type='button') Confirm
-
+include _modal
 
 .row
 	.col-md-12
@@ -26,4 +10,4 @@ data-keyboard="false"
 	.col-md-12.mr-top-50
 		uiza-dashboard-unique-user-play-request()
 	.col-md-12.mr-top-50
-		sbd-table-data(ng-form='null' ng-data='null' ng-title='"Detail"')
+		sbd-table-data(ng-form-table='form' ng-data-table='data' ng-title='"Detail"' ng-pagination='pagination')

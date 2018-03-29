@@ -17,8 +17,8 @@ module.exports = {
   session:{
     host: 'localhost',
     port: 6379,
-    pass: false,
-    password: false,
+    // pass: false,
+    // password: false,
     // ttl: 86400,
     db: 0,
     prefix: 'sbd:session:admintool:',

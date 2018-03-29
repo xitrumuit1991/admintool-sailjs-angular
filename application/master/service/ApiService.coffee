@@ -25,7 +25,7 @@ _service = ($rootScope, $http, GlobalConfig, UtitService, UserService)->
     return false
 
   self.request = (options, done)->
-    return UtitService.notifyError('You are not permission!') if !self.havePermissionFrontEnd(options.url)
+    return UtitService.notifyError('You are not permission at Client request !') if !self.havePermissionFrontEnd(options.url)
     options.data = _.extend(_.clone(self.commonData), options.data)
     if options.method and options.method.toUpperCase() is 'GET' and options.data
       options.url = "#{options.url}?#{$.param(options.data)}"
@@ -38,7 +38,7 @@ _service = ($rootScope, $http, GlobalConfig, UtitService, UserService)->
     ),(error)->
       console.error 'ApiService error='
       console.error error
-      message = error?.data?.message || 'Unknow Error'
+      message = error?.data?.message || "#{error.data.statusCode || error.status} - Request Error"
       if error.status is 403 and error.data.code is 101 #not permission
         UtitService.notifyError(message)
       else if !options.hideNotifyError

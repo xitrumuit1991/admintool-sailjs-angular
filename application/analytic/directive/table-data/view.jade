@@ -12,10 +12,10 @@
 					table(class='table table-striped table-hover')
 						thead
 							tr
-								th(ng-repeat='frm in form' ) {{frm.title}}
+								th(ng-repeat='frm in formTable' ) {{frm.title}}
 						tbody
-							tr(ng-repeat='ite in data' )
-								td(ng-repeat='frm in form' )
+							tr(ng-repeat='ite in dataTable' )
+								td(ng-repeat='frm in formTable' )
 									span(ng-if='frm.type == "text" ') {{ (ite[frm.key] ) }}
 									span(ng-if='frm.type == "number" ') {{ (ite[frm.key] ) | number : 0 }}
 									span(ng-if='frm.type == "percent" ') {{ (ite[frm.key] ) | number : 2  }} %
@@ -23,11 +23,11 @@
 				.col-md-12.text-right
 					.layout-pagination
 						uib-pagination.table-records-pages(
-						total-items='100',
-						ng-model='currentPage',
-						items-per-page='10'
-						ng-change="onPageChange()"
-						max-size="5"
+						total-items='pagination.totalItems',
+						ng-model='pagination.currentPage',
+						items-per-page='pagination.limit'
+						ng-change="pagination.onPageChange()"
+						max-size="7"
 						boundary-links="true"
 						rotate="false"
 						first-text='«'

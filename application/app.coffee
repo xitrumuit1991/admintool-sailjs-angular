@@ -7,15 +7,15 @@ config =
 switch window.ENV
   when 'production', 'prod'
     config = _.extend(config, {
-      apiUrl : ''
+      apiUrl : 'http://113.164.27.20:8080'
     })
   when 'development', 'dev'
     config = _.extend(config, {
-      apiUrl : ''
+      apiUrl : 'http://localhost:8080'
     })
   else
     config = _.extend(config, {
-      apiUrl : ''
+      apiUrl : 'http://localhost:8080'
     })
 
 angular.element(document).ready () ->
