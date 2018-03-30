@@ -38,19 +38,13 @@ module.exports.routes = {
 
 
   //Analytic
+  //content-report
   'POST /analytic/content-report/top-content-table' : 'analytic/contentReportController.topContentTable',
   'POST /analytic/content-report/top-content-chart' : 'analytic/contentReportController.topContentChart',
   'POST /analytic/content-report/top-content-summary' : 'analytic/contentReportController.topContentSummary',
 
-
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
-
+  //system-report
+  'POST /analytic/system-report/platform-table' : 'analytic/systemReportController.platformTable',
+  'POST /analytic/system-report/platform-chart' : 'analytic/systemReportController.platformChart',
+  'POST /analytic/system-report/platform-summary' : 'analytic/systemReportController.platformSummary',
 };

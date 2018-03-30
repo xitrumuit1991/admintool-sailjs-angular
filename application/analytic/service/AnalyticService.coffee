@@ -1,5 +1,26 @@
 _service = ($rootScope, $http, GlobalConfig, UtitService, uuid, ApiService)->
   self = @
+  self.systemReport =
+    platformTable : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/platform-table"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    platformChart : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/platform-chart"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    platformSummary : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/platform-summary"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+
+
   self.contentReport =
     topContentTable : (params = {}, done)->
       options =

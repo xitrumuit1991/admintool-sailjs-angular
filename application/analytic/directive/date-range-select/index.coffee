@@ -1,7 +1,7 @@
 directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $timeout, AnalyticHelperService, $state) ->
   link = ($scope, element, attr) ->
     $scope.selectRange =
-      start_date : moment().add(-1, 'days').format('DD/MM/YYYY')
+      start_date : moment().add(-7, 'days').format('DD/MM/YYYY')
       end_date : moment(new Date()).format('DD/MM/YYYY')
       perios : ''
 
@@ -71,7 +71,7 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
           $scope.selectRange.start_date = moment(d).format('DD/MM/YYYY')
           $scope.selectRange.end_date = moment(d).format('DD/MM/YYYY')
           break
-      console.log '$scope.selectRange', $scope.selectRange
+#      console.log '$scope.selectRange', $scope.selectRange
 
 
     $scope.$watch 'selectRange.start_date', (data)->
@@ -80,7 +80,7 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
         $scope.outputStartDate = moment(data, 'DD/MM/YYYY').format('YYYY-MM-DD')
       else
         $scope.outputStartDate = data
-      console.log '$scope.outputStartDate',$scope.outputStartDate
+#      console.log '$scope.outputStartDate',$scope.outputStartDate
 
 
     $scope.$watch 'selectRange.end_date', (data)->
@@ -89,7 +89,7 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
         $scope.outputEndDate = moment(data, 'DD/MM/YYYY').format('YYYY-MM-DD')
       else
         $scope.outputEndDate = data
-      console.log '$scope.outputEndDate',$scope.outputEndDate
+#      console.log '$scope.outputEndDate',$scope.outputEndDate
 
     return null
   directive =

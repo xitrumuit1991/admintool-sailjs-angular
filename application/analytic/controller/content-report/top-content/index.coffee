@@ -62,7 +62,6 @@ _controller = ($rootScope, $scope, $http, ApiService,
     key : 'total_web_views'
     type : 'number'
   ]
-
   $scope.pagination =
     totalItems : 0
     currentPage : 1
@@ -192,11 +191,13 @@ _controller = ($rootScope, $scope, $http, ApiService,
   #      $("##{@.id}").modal('hide')
 
   $scope.parseDataTable = ()->
+    if $scope.pagination.totalItems < $scope.pagination.limit
+      return $scope.data = $scope.allData
     $scope.data = []
     start = ($scope.pagination.currentPage - 1) * $scope.pagination.limit
     end = start + $scope.pagination.limit
-    while start <= end && start <= $scope.pagination.totalItems && end <= $scope.pagination.totalItems
-      $scope.data.push($scope.allData[start])
+    while start <= end && start <= $scope.pagination.totalItems
+      $scope.data.push($scope.allData[start]) if $scope.allData[start]
       start++
 
   $scope.parseDataChart = (label, key)->
@@ -219,13 +220,11 @@ _controller = ($rootScope, $scope, $http, ApiService,
       $scope.pagination.totalItems = result.num_returned_items
       $scope.parseDataTable()
     AnalyticService.contentReport.topContentChart params, (err, result)->
-      console.log 'topContentChart', result
       return if err or !result
       $scope.allDataChart = result.data
       $scope.parseDataChart("Duration", 'total_duration')
 
     AnalyticService.contentReport.topContentSummary params, (err, result)->
-      console.log 'topContentSummary', result
       return if err or !result
       $scope.dataSummary = result.data
 
