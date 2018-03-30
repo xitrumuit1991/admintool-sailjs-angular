@@ -1,5 +1,5 @@
 _request = require('request')
-queryString = require('query-string');
+queryString = require('query-string')
 
 exports.request = (options = {}, done)->
   options.headers = _.extend((options.headers || {}), {
@@ -13,8 +13,11 @@ exports.request = (options = {}, done)->
       delete options.data
       delete options.form
       delete options.body
-#  if options and options.method in ['post','POST']
-#    console.log ''
+  if options and options.method in ['post','POST']
+    if options.body
+      options.body.start = parseInt(options.body.start)
+      options.body.end = parseInt(options.body.end)
+
   sails.log.info '----------------------------------'
   sails.log.info 'options',options
   sails.log.info '----------------------------------'
