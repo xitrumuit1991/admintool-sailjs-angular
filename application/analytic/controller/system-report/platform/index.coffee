@@ -131,13 +131,13 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
       borderJoinStyle : 'miter',
       pointBorderColor : "white",
       pointBackgroundColor : "black",
-      pointBorderWidth : 1,
-      pointHoverRadius : 8,
+      pointBorderWidth : 2,
+      pointHoverRadius : 4,
       pointHoverBackgroundColor : "brown",
       pointHoverBorderColor : "yellow",
       pointHoverBorderWidth : 2,
-      pointRadius : 4,
-      pointHitRadius : 10,
+      pointRadius : 3,
+      pointHitRadius : 6,
 #      data : []
       spanGaps : false
     }
@@ -218,7 +218,7 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
     while start <= end && start <= $scope.pagination.totalItems
       $scope.data.push($scope.allData[start]) if $scope.allData[start]
       start++
-    console.log '$scope.data',$scope.data
+#    console.log '$scope.data',$scope.data
 
   $scope.parseDataChart = (type = 'duration')->
     $scope.dataLabelsChart = []
