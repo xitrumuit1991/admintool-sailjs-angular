@@ -19,6 +19,42 @@ _service = ($rootScope, $http, GlobalConfig, UtitService, uuid, ApiService)->
         method : "POST"
         data : params
       ApiService.request(options, done)
+    osTable : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/os-table"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    osChart : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/os-chart"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    osSummary : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/os-summary"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    browserTable : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/browser-table"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    browserChart : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/browser-chart"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    browserSummary : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/system-report/browser-summary"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
 
 
   self.contentReport =

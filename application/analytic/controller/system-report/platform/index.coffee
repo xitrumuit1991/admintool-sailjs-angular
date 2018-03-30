@@ -215,7 +215,7 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
     $scope.data = []
     start = ($scope.pagination.currentPage - 1) * $scope.pagination.limit
     end = start + $scope.pagination.limit
-    while start <= end && start <= $scope.pagination.totalItems
+    while start < end && start <= $scope.pagination.totalItems
       $scope.data.push($scope.allData[start]) if $scope.allData[start]
       start++
 #    console.log '$scope.data',$scope.data
@@ -242,7 +242,7 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
 
   $scope.loadData = ()->
     params =
-      partner_code : "thvli"
+      partner_code :  $rootScope.user.partner_code || "thvli"
       start : moment($scope.param.startDate, 'YYYY-MM-DD').unix()
       end : moment($scope.param.endDate, 'YYYY-MM-DD').unix()
     $.blockUI()

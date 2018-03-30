@@ -30,6 +30,7 @@ module.exports =
       defaultsTo : 1
     createdBy : "string"
     updatedBy : "string"
+    partner_code : 'string'
 
   initUserAdminData : ()->
     dataUsers =[
@@ -42,6 +43,7 @@ module.exports =
       email : 'nguyentvk@mail.com'
       password : 'nguyentvk123!@#'
       isAdmin : 1
+      partner_code : 'thvli'
     ,
       name : 'superadmin'
       email : 'superadmin@mail.com'
@@ -57,6 +59,7 @@ module.exports =
       email : 'thvli@mail.com'
       password : 'thvli123!@#'
       isAdmin : 1
+      partner_code : 'thvli'
     ]
     _.map dataUsers,(data)->
       user.findOneByEmail(data.email).exec (error, userData)->

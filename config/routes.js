@@ -47,4 +47,12 @@ module.exports.routes = {
   'POST /analytic/system-report/platform-table' : 'analytic/systemReportController.platformTable',
   'POST /analytic/system-report/platform-chart' : 'analytic/systemReportController.platformChart',
   'POST /analytic/system-report/platform-summary' : 'analytic/systemReportController.platformSummary',
+
+  'POST /analytic/system-report/os-table' : 'analytic/systemReportController.osTable',
+  'POST /analytic/system-report/os-chart' : 'analytic/systemReportController.osChart',
+  'POST /analytic/system-report/os-summary' : 'analytic/systemReportController.osSummary',
+
+  'POST /analytic/system-report/browser-table' : 'analytic/systemReportController.browserTable',
+  'POST /analytic/system-report/browser-chart' : 'analytic/systemReportController.browserChart',
+  'POST /analytic/system-report/browser-summary' : 'analytic/systemReportController.browserSummary',
 };

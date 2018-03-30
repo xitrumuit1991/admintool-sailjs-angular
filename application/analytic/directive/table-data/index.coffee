@@ -30,23 +30,7 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
       key : 'avg_view_drop_off'
     ]
 
-    initData = [
-      video : 'Name video'
-      play : 10
-      minutes_viewed: 1769
-      avg_view_time: 361
-      player_impressions:10
-      play_to_impression_ratio: 100
-      avg_view_drop_off: 35
-    ,
-      video : 'Name video 2'
-      play : 11
-      minutes_viewed: 1777
-      avg_view_time: 315
-      player_impressions:21
-      play_to_impression_ratio: 90
-      avg_view_drop_off: 35.5
-    ]
+    initData = []
 
     $scope.$watch 'formTable',(data)->
       $scope.formTable = initForm unless data
