@@ -214,7 +214,9 @@ _controller = ($rootScope, $scope, $http, ApiService,
       partner_code : "thvli"
       start : moment($scope.param.startDate, 'YYYY-MM-DD').unix()
       end : moment($scope.param.endDate, 'YYYY-MM-DD').unix()
+    $.blockUI()
     AnalyticService.contentReport.topContentTable params, (err, result)->
+      $.unblockUI()
       return if err or !result
       $scope.allData = result.data
       $scope.pagination.totalItems = result.num_returned_items
@@ -223,7 +225,6 @@ _controller = ($rootScope, $scope, $http, ApiService,
       return if err or !result
       $scope.allDataChart = result.data
       $scope.parseDataChart("Duration", 'total_duration')
-
     AnalyticService.contentReport.topContentSummary params, (err, result)->
       return if err or !result
       $scope.dataSummary = result.data

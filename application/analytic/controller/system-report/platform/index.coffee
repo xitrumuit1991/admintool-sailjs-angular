@@ -177,8 +177,8 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
       ,
         label : "TV View",
         data : []
-        backgroundColor : "#1dff58",
-        borderColor : "#1dff58",
+        backgroundColor : "#e65252",
+        borderColor: "#e65252",
       ,
         label : "Web View",
         data : []
@@ -245,7 +245,9 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
       partner_code : "thvli"
       start : moment($scope.param.startDate, 'YYYY-MM-DD').unix()
       end : moment($scope.param.endDate, 'YYYY-MM-DD').unix()
+    $.blockUI()
     AnalyticService.systemReport.platformTable params, (err, result)->
+      $.unblockUI()
       return if err or !result
       $scope.allData = result.data
       $scope.pagination.totalItems = result.num_returned_items
