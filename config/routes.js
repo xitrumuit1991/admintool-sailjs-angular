@@ -38,7 +38,9 @@ module.exports.routes = {
 
 
   //Analytic
-  'POST /analytic/content-report/top-content-table' : 'analytic/contentReportController.topContentTable'
+  'POST /analytic/content-report/top-content-table' : 'analytic/contentReportController.topContentTable',
+  'POST /analytic/content-report/top-content-chart' : 'analytic/contentReportController.topContentChart',
+  'POST /analytic/content-report/top-content-summary' : 'analytic/contentReportController.topContentSummary',
 
 
   /***************************************************************************

@@ -41,18 +41,18 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
       avg_view_drop_off: 68.75
     }
 
-    $scope.$watch 'form',(data)->
-      $scope.form = initForm unless data
+    $scope.$watch 'formSummary',(data)->
+      $scope.formSummary = initForm unless data
 
-    $scope.$watch 'data',(data)->
-      $scope.data = initData unless data
+    $scope.$watch 'dataSummary',(data)->
+      $scope.dataSummary = initData unless data
 
     return null
   directive =
     restrict : 'E'
     scope :
-      form : '=ngForm'
-      data : '=ngData'
+      formSummary : '=ngFormSummary'
+      dataSummary : '=ngDataSummary'
       title : '=ngTitle'
     templateUrl : '/template/analytic/directive/total-summary-each-module/view.html'
     link : link
