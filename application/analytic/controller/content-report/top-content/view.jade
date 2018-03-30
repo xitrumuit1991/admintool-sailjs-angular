@@ -8,6 +8,11 @@ include _modal
 	.col-md-12
 		sbd-total-summary-each-module(ng-form-summary='formSummary' ng-data-summary='dataSummary')
 	.col-md-12.mr-top-50
-		uiza-dashboard-unique-user-play-request()
+		uiza-module-chart(ng-title='"Top Content Chart"'
+		ng-option-chart='optionChart'
+		ng-nav-tab-type='chartNavTabType'
+		ng-label-chart='dataLabelsChart'
+		ng-dataset-chart='dataSetChart'
+		)
 	.col-md-12.mr-top-50
 		sbd-table-data(ng-form-table='form' ng-data-table='data' ng-title='"Detail"' ng-pagination='pagination')

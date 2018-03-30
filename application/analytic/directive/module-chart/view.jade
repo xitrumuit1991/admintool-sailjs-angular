@@ -1,21 +1,21 @@
-.dashboard-UniqueUserPlayRequest
+.module-chart
 	.box.box-warning
 		.box-header
 			h3.box-title
-				span.mr-5 Top Content
-				i.fa.fa-question-circle(sbd-tooltip ng-value='dataTooltip')
+				span.mr-5 {{title || "Top Content"}}
+				i.fa.fa-question-circle(sbd-tooltip ng-value='title')
 			.clearfix
 		.box-body
 			.row
 				.col-md-6
 					ul.nav.nav-tabs.smaller.inline.display-inline
-						li.nav-item.active
-							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='onChangeTypeView("unique_user")') Unique Users
-						li.nav-item
-							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='onChangeTypeView("play_request")') Plays Requested
-						li.nav-item
-							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='false' ng-click='onChangeTypeView("play_through")') Playthrough
-				.col-md-6
+						li.nav-item( ng-repeat='ite in navTabType' ng-class=' { "active": $first }')
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='ite.action()') {{ite.title}}
+						//li.nav-item.active
+						//	a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='onChangeTypeView("unique_user")') Unique Users
+
+				//right tab
+				//.col-md-6
 					ul.nav.nav-pills.smaller.pull-right.inline.display-inline
 						li.nav-item.active
 							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='onChangeTypeInterval("1w")') Week
@@ -31,4 +31,4 @@
 				.col-md-12
 					.tab-content.clearfix
 						#uniqueUsers.tab-pane.active(aria-expanded='true')
-							canvas#topContentLineChart( width="500" height="500")
+							canvas#moduleChart( width="500" height="500")
