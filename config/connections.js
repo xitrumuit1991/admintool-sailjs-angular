@@ -1,6 +1,6 @@
 module.exports.connections = {
-  // urlLinkApi : 'http://113.164.27.20:8000/api',
-  urlLinkApi : 'http://analytic.sbd/api',
+  urlLinkApi : 'http://113.164.27.20:8000/api',
+  // urlLinkApi : 'http://analytic.sbd/api',
   localDiskDb: {
     adapter: 'sails-disk'
   },

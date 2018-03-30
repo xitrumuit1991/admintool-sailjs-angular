@@ -11,13 +11,11 @@ urlLinkApi = sails.config.connections.urlLinkApi
 ###
 exports.topContentTable = (req, res)->
   param = req.allParams()
-  console.log 'param',param
   options =
     url: urlLinkApi + '/report/top_content/table'
     method : 'POST'
     json : true
-    form : param
-    body : param
+    body : param #form : param #data : param
   ApiService.request options,(err, result)->
     if err or !result
       return res.badRequest(err)
@@ -35,11 +33,14 @@ exports.topContentTable = (req, res)->
 ###
 module.exports.topContentChart = (req, res)->
   param = req.allParams()
+  param.start = parseInt(param.start)
+  param.end = parseInt(param.end)
   options =
     url: urlLinkApi + '/report/top_content/chart'
     method : 'POST'
     json : true
     form : param
+    data : param
     body : param
   ApiService.request options,(err, result)->
     if err or !result
