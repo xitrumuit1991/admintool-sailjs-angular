@@ -10,7 +10,7 @@ _run.$inject = ['$rootScope']
 
 _controller = ($rootScope, $scope, $http, ApiService,
   UtitService, $state, $timeout, $location,
-  $interval, AnalyticService, $filter) ->
+  $interval, AnalyticService, $filter, AnalyticHelperService) ->
   $scope.param =
     startDate : ''
     endDate : ''
@@ -18,9 +18,12 @@ _controller = ($rootScope, $scope, $http, ApiService,
   $scope.data = []
   $scope.allData = []
   $scope.form = [
-    title : 'Content Id'
-    key : 'content_id'
+    title : 'Title'
+    key : 'title'
     type : 'text'
+#    title : 'Content Id'
+#    key : 'content_id'
+#    type : 'text'
   ,
     title : 'Total Duration'
     key : 'total_duration'
@@ -195,12 +198,27 @@ _controller = ($rootScope, $scope, $http, ApiService,
       data = JSON.parse(angular.toJson( $scope.allData )) #collect data
     catch e
       console.warn e
-    if !data
-      return UtitService.notifyError('Can not gen Excel file!')
-    ws = XLSX.utils.json_to_sheet(data) #/* generate a worksheet */
-    wb = XLSX.utils.book_new() #/* add to workbook */
-    XLSX.utils.book_append_sheet(wb, ws, "top_content")
-    XLSX.writeFile(wb, "#{moment().format('DD/MM/YYYY')}_top_content.xlsx") #write workbook and force a download
+    if !data then  return UtitService.notifyError('Can not gen Excel file!')
+    paramListId =
+      partner_code: $rootScope.user.partner_code || "thvli"
+      content_ids: _.map(data,'content_id')
+    AnalyticService.contentReport.getContentByIds paramListId, (err, result)->
+      return UtitService.notifyError('Can not gen Excel file!') if err or !result
+      _.mapKeys result.data, (value, key)->
+        indexFind = _.findIndex(data,{'content_id' : key})
+        if indexFind != -1
+          data[indexFind].title = value.title
+          data[indexFind].slug = value.slug
+      _.map data,(item)->
+        delete item.source_id
+        delete item.status
+        delete item.id
+        item = AnalyticHelperService.sortKeyOfObject(item)
+      ws = XLSX.utils.json_to_sheet(data) #/* generate a worksheet */
+      wb = XLSX.utils.book_new() #/* add to workbook */
+      XLSX.utils.book_append_sheet(wb, ws, "top_content")
+      #write workbook and force a download
+      XLSX.writeFile(wb, "#{moment().format('DD/MM/YYYY')}_top_content.xlsx")
 
   $scope.parseDataTable = ()->
     $scope.data = []
@@ -209,6 +227,16 @@ _controller = ($rootScope, $scope, $http, ApiService,
     while start < end && start <= $scope.pagination.totalItems
       $scope.data.push($scope.allData[start]) if $scope.allData[start]
       start++
+    paramListId =
+      partner_code: $rootScope.user.partner_code || "thvli"
+      content_ids: _.map($scope.data,'content_id')
+    AnalyticService.contentReport.getContentByIds paramListId, (err, result)->
+      return if err or !result
+      _.mapKeys result.data, (value, key)->
+        indexFind = _.findIndex($scope.data,{'content_id' : key})
+        if indexFind != -1
+          $scope.data[indexFind] = _.extend($scope.data[indexFind], value)
+      console.log '$scope.data',$scope.data
 
   $scope.parseDataChart = (label, key)->
     console.log '$scope.allDataChart', $scope.allDataChart
@@ -242,7 +270,7 @@ _controller = ($rootScope, $scope, $http, ApiService,
   return
 _controller.$inject = ['$rootScope', '$scope', '$http', 'ApiService',
   'UtitService', '$state', '$timeout', '$location',
-  '$interval', 'AnalyticService', '$filter'
+  '$interval', 'AnalyticService', '$filter','AnalyticHelperService'
 ]
 
 window.app

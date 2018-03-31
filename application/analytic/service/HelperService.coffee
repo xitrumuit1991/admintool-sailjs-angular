@@ -1,5 +1,17 @@
 _service = ($rootScope, $http, GlobalConfig, UtitService, uuid, ApiService)->
   self = @
+  self.sortKeyOfObject = (obj) ->
+    keys = []
+    sorted_obj = {}
+    for key of obj
+      if obj.hasOwnProperty(key) then keys.push(key)
+    # sort keys
+    keys.sort()
+    # create new array based on Sorted Keys
+    _.map keys, (key)->
+      sorted_obj[key] = obj[key]
+    return sorted_obj
+
 
   self.randomName = ()->
     name = [

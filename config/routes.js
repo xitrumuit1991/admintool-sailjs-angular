@@ -42,6 +42,7 @@ module.exports.routes = {
   'POST /analytic/content-report/top-content-table' : 'analytic/contentReportController.topContentTable',
   'POST /analytic/content-report/top-content-chart' : 'analytic/contentReportController.topContentChart',
   'POST /analytic/content-report/top-content-summary' : 'analytic/contentReportController.topContentSummary',
+  'POST /analytic/content-report/get-content-by-ids' : 'analytic/contentReportController.getContentByIds',
 
   //system-report
   'POST /analytic/system-report/platform-table' : 'analytic/systemReportController.platformTable',

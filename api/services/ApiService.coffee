@@ -15,8 +15,8 @@ exports.request = (options = {}, done)->
       delete options.body
   if options and options.method in ['post','POST']
     if options.body
-      options.body.start = parseInt(options.body.start)
-      options.body.end = parseInt(options.body.end)
+      options.body.start = parseInt(options.body.start) if options.body.start
+      options.body.end = parseInt(options.body.end) if options.body.end
 
   sails.log.info '----------------------------------'
   sails.log.info 'options',options

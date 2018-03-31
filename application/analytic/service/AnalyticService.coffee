@@ -58,6 +58,12 @@ _service = ($rootScope, $http, GlobalConfig, UtitService, uuid, ApiService)->
 
 
   self.contentReport =
+    getContentByIds : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/content-report/get-content-by-ids"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
     topContentTable : (params = {}, done)->
       options =
         url : "#{GlobalConfig.apiUrl}/analytic/content-report/top-content-table"

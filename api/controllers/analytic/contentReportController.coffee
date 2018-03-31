@@ -69,3 +69,23 @@ module.exports.topContentSummary = (req, res)->
       return res.badRequest(err)
     res.ok(result)
 
+###
+@api {post} /analytic/content-report/get-content-by-ids get-content-by-ids
+@apiName get-content-by-ids
+@apiGroup Analytic-Content-Report
+@apiPermission /analytic/content-report/get-content-by-ids
+@apiParam {string} partner_code in body of post. Ex: 'thvli'
+@apiParam {string} content_ids in body of post. Ex: [ "2c826cc5-e813-4950-a8c5-44c0122ff71b", "966dba5c-c01d-402f-b96f-6694c7c72e2b"]
+###
+module.exports.getContentByIds = (req, res)->
+  param = req.allParams()
+  options =
+    url: urlLinkApi + '/content/info'
+    method : 'POST'
+    json : true
+    body : param
+  ApiService.request options,(err, result)->
+    if err or !result
+      return res.badRequest(err)
+    res.ok(result)
+
