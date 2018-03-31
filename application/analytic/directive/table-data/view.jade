@@ -18,7 +18,7 @@
 								th(ng-repeat='frm in formTable' ) {{frm.title}}
 						tbody
 							tr(ng-repeat='ite in dataTable' )
-								td(ng-repeat='frm in formTable' )
+								td(ng-repeat='frm in formTable' style='{{$first ? "width: 250px; display: inline-block;" : "" }}')
 									span(ng-if='frm.type == "text" ') {{ (ite[frm.key] ) }}
 									span(ng-if='frm.type == "number" ') {{ (ite[frm.key] ) | number : 0 }}
 									span(ng-if='frm.type == "percent" ') {{ (ite[frm.key] ) | number : 2  }} %
