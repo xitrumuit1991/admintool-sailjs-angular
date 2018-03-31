@@ -16,8 +16,8 @@
 							i.fa.fa-download.mr-right-5
 							span Export to CSV
 				.row.mr-top-20.live-realtime.pd-bottom-50
-					.col-md-3(ng-repeat='ite in form')
-						.item
+					.col-lg-3.col-md-3.mr-bottom-10(ng-repeat='ite in form')
+						.item.pd-bottom-10
 							.value
 								span(ng-if='ite.type == "number"') {{data[ite.key] | number : 2}}
 							.title {{ite.title}}

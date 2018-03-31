@@ -1,7 +1,7 @@
 .element-wrapper
 	.animated.fadeIn(ui-view='')
 		.row.mr-top-20
-			.col-lg-3.col-xs-6(ng-repeat='ite in blockSytemReport')
+			.col-lg-3.col-md-3.col-xs-4(ng-repeat='ite in blockSytemReport')
 				.small-box.pointer.bg(
 				class='{{ite.bg}}'
 				ui-sref='{{ite.href}}')
