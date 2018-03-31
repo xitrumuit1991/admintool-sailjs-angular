@@ -1,4 +1,5 @@
 urlLinkApi = sails.config.connections.urlLinkApi
+lodash = require('lodash')
 
 ###
 @api {post} /analytic/system-report/platform-table platform-table
@@ -19,6 +20,8 @@ exports.platformTable = (req, res)->
   ApiService.request options,(err, result)->
     if err or !result
       return res.badRequest(err)
+    if result and result.data and result.data[0]
+      result.data = lodash.orderBy(result.data, ['total_views'],['desc'])
     res.ok(result)
 
 
@@ -93,6 +96,8 @@ exports.osTable = (req, res)->
   ApiService.request options,(err, result)->
     if err or !result
       return res.badRequest(err)
+    if result and result.data and result.data[0]
+      result.data = lodash.orderBy(result.data, ['total_views'],['desc'])
     res.ok(result)
 
 ###
@@ -167,6 +172,8 @@ exports.browserTable = (req, res)->
   ApiService.request options,(err, result)->
     if err or !result
       return res.badRequest(err)
+    if result and result.data and result.data[0]
+      result.data = lodash.orderBy(result.data, ['total_views'],['desc'])
     res.ok(result)
 
 ###

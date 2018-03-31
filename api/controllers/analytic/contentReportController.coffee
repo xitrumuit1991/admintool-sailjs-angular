@@ -19,6 +19,8 @@ exports.topContentTable = (req, res)->
   ApiService.request options,(err, result)->
     if err or !result
       return res.badRequest(err)
+    if result and result.data and result.data[0]
+      result.data = lodash.orderBy(result.data, ['total_content_views'],['desc'])
     res.ok(result)
 
 

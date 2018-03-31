@@ -211,6 +211,20 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
     console.log '$scope.param.endDate', $scope.param.endDate
     $scope.loadData()
 
+  $scope.actionDownload = ()->
+    data = null
+    try
+      data = JSON.parse(angular.toJson( $scope.allData )) #collect data
+    catch e
+      console.warn e
+    if !data
+      return UtitService.notifyError('Can not gen Excel file!')
+    ws = XLSX.utils.json_to_sheet(data) #/* generate a worksheet */
+    wb = XLSX.utils.book_new() #/* add to workbook */
+    XLSX.utils.book_append_sheet(wb, ws, "platform_report")
+    #write workbook and force a download
+    XLSX.writeFile(wb, "#{moment().format('DD/MM/YYYY')}_platform_report.xlsx")
+
   $scope.parseDataTable = ()->
     $scope.data = []
     start = ($scope.pagination.currentPage - 1) * $scope.pagination.limit

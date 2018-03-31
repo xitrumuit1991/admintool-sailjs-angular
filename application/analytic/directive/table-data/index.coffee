@@ -51,6 +51,7 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
       dataTable : '=ngDataTable'
       title : '=ngTitle'
       pagination : '=ngPagination'
+      actionDownload : '=ngActionDownload'
     templateUrl : '/template/analytic/directive/table-data/view.html'
     link : link
   return directive
