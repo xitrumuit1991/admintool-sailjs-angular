@@ -3,10 +3,12 @@ html(lang='en' ng-controller='AppCtrl')
 	head
 		meta(charset='UTF-8')
 		//base(href="/")
-		title Admin | Dashboard
+		title(ng-if='metaPageTitle') {{ metaPageTitle || "Video Performance"}}
 		//meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
 		meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', name='viewport')
-		meta(title='AdminLTE | Dashboard')
+		link(rel="shortcut icon" type="image/png" href="img/logo_thvli.png")
+		link(rel="shortcut icon" type="image/png" href="img/logo_thvli.png")
+		meta(title='Video Performance')
 		include include/style
 		block styles
 	body.skin-black

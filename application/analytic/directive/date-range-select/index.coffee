@@ -2,8 +2,10 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
   link = ($scope, element, attr) ->
     $scope.selectRange =
 #      start_date : moment().add(-7, 'days').format('DD/MM/YYYY')
-      start_date : moment().startOf('month').format('DD/MM/YYYY')
-      end_date : moment(new Date()).format('DD/MM/YYYY')
+      start_date : moment('2018-03-01').format('DD/MM/YYYY')
+      end_date : moment('2018-03-31').format('DD/MM/YYYY')
+#      start_date : moment().startOf('month').format('DD/MM/YYYY')
+#      end_date : moment(new Date()).format('DD/MM/YYYY')
       perios : ''
 
     $scope.listSelectPeriods = [

@@ -11,6 +11,7 @@ _run.$inject = ['$rootScope']
 _controller = ($rootScope, $scope, $http, ApiService,
   UtitService, $state, $timeout, $location,
   $interval, AnalyticService, $filter, AnalyticHelperService) ->
+  $rootScope.metaPageTitle = 'Top Content'
   $scope.param =
     startDate : ''
     endDate : ''
@@ -236,7 +237,7 @@ _controller = ($rootScope, $scope, $http, ApiService,
         indexFind = _.findIndex($scope.data,{'content_id' : key})
         if indexFind != -1
           $scope.data[indexFind] = _.extend($scope.data[indexFind], value)
-      console.log '$scope.data',$scope.data
+#      console.log '$scope.data',$scope.data
 
   $scope.parseDataChart = (label, key)->
     console.log '$scope.allDataChart', $scope.allDataChart
@@ -246,6 +247,18 @@ _controller = ($rootScope, $scope, $http, ApiService,
     _.map $scope.allDataChart, (item)->
       $scope.dataLabelsChart.push(moment(item.unix_timestamp_as_string).format('DD/MM/YYYY'))
       $scope.dataSetChart[0].data.push(item[key])
+
+  $scope.sortByKey = (sortkey, columnItem )->
+    _.map $scope.form,(item)->
+      if item.key != sortkey then delete item.sortType = null
+    return if !sortkey or !columnItem
+    if !columnItem.sortType or columnItem.sortType == 'desc'
+      columnItem.sortType = 'asc'
+    else if columnItem.sortType == 'asc'
+      columnItem.sortType = 'desc'
+    $scope.allData = _.orderBy($scope.allData, ["#{sortkey}"],["#{columnItem.sortType}"])
+    $scope.pagination.currentPage = 1
+    $scope.parseDataTable()
 
   $scope.loadData = ()->
     params =

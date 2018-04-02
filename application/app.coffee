@@ -7,7 +7,8 @@ config =
 switch window.ENV
   when 'production', 'prod'
     config = _.extend(config, {
-      apiUrl : 'http://113.164.27.20:8080'
+#      apiUrl : 'http://113.164.27.20:8080'
+      apiUrl : 'http://analytics.thvli.vimai.vn'
     })
   when 'development', 'dev'
     config = _.extend(config, {
@@ -93,7 +94,7 @@ run = ($rootScope, $state, $window, $http, UtitService, ApiService)->
 
   try
     $rootScope.user = JSON.parse(window.localStorage.user)
-    $rootScope.user.avatar = "img/avatar#{_.random(1,5)}.png" if _.isEmpty($rootScope.user.avatar)
+    $rootScope.user = UtitService.parseLogoFromAdminAcc($rootScope.user)
   catch e
 
   $rootScope.$on "$stateChangeStart", (event, toState, toParams, fromState, fromParams) ->

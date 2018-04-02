@@ -12,13 +12,16 @@
 		.total-summary-each-module
 			.row
 				.col-md-12
-					table(class='table table-striped table-hover')
+					table(class='table table-striped table-hover dataTable')
 						thead
-							tr
-								th(ng-repeat='frm in formTable' ) {{frm.title}}
+							tr(role='row')
+								th(ng-repeat='frm in formTable'
+								ng-class='{"sorting" : !frm.sortType,  "sorting_asc" : frm.sortType =="asc", "sorting_desc":frm.sortType =="desc" }'
+								ng-click='sortByKey(frm.key, frm)')
+									span {{frm.title}}
 						tbody
 							tr(ng-repeat='ite in dataTable' )
-								td(ng-repeat='frm in formTable' style='{{$first ? "width: 250px; display: inline-block;" : "" }}')
+								td(ng-repeat='frm in formTable' style='{{$first ? "min-width: 250px;" : "" }}')
 									span(ng-if='frm.type == "text" ') {{ (ite[frm.key] ) }}
 									span(ng-if='frm.type == "number" ') {{ (ite[frm.key] ) | number : 0 }}
 									span(ng-if='frm.type == "percent" ') {{ (ite[frm.key] ) | number : 2  }} %

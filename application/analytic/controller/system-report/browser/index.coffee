@@ -10,6 +10,7 @@ _run.$inject = ['$rootScope']
 
 _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $timeout, $location, $interval,
 AnalyticService,$filter)->
+  $rootScope.metaPageTitle = 'Browser Report'
   $scope.param =
     startDate : ''
     endDate : ''
@@ -192,6 +193,18 @@ AnalyticService,$filter)->
     _.map $scope.allDataChart, (item)->
       $scope.dataLabelsChart.push(moment(item.unix_timestamp_as_string).format('DD/MM/YYYY'))
       $scope.dataSetChart[0].data.push(item[key])
+
+  $scope.sortByKey = (sortkey, columnItem )->
+    _.map $scope.form,(item)->
+      if item.key != sortkey then delete item.sortType = null
+    return if !sortkey or !columnItem
+    if !columnItem.sortType or columnItem.sortType == 'desc'
+      columnItem.sortType = 'asc'
+    else if columnItem.sortType == 'asc'
+      columnItem.sortType = 'desc'
+    $scope.allData = _.orderBy($scope.allData, ["#{sortkey}"],["#{columnItem.sortType}"])
+    $scope.pagination.currentPage = 1
+    $scope.parseDataTable()
 
   $scope.loadData = ()->
     params =

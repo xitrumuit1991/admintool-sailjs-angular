@@ -245,6 +245,13 @@ _service = ($timeout, $rootScope, $state, notify, uuid, GlobalConfig)->
     console.log 'paramFinal',paramFinal
     return paramFinal
 
+  self.parseLogoFromAdminAcc = (user)->
+    if user.email == 'thvli@mail.com'
+      user.avatar = 'img/logo_thvli.png'
+    else
+      user.avatar = "img/avatar#{_.random(1,5)}.png" if _.isEmpty(user.avatar)
+    return user
+
   return null
 _service.$inject = ['$timeout', '$rootScope', '$state', 'notify', 'uuid', 'GlobalConfig']
 

@@ -52,6 +52,7 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
       title : '=ngTitle'
       pagination : '=ngPagination'
       actionDownload : '=ngActionDownload'
+      sortByKey : '=ngSortByKey'
     templateUrl : '/template/analytic/directive/table-data/view.html'
     link : link
   return directive

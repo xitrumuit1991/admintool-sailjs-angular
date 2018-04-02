@@ -10,6 +10,7 @@ _run.$inject = ['$rootScope']
 
 _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $timeout, $location,
   $interval, AnalyticService, $filter) ->
+  $rootScope.metaPageTitle = 'Platform Report'
 
   $scope.param =
     startDate : ''
@@ -253,6 +254,18 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
         $scope.dataSetChart[1].data.push(item['total_android_views'])
         $scope.dataSetChart[2].data.push(item['total_tv_views'])
         $scope.dataSetChart[3].data.push(item['total_web_views'])
+
+  $scope.sortByKey = (sortkey, columnItem )->
+    _.map $scope.form,(item)->
+      if item.key != sortkey then delete item.sortType = null
+    return if !sortkey or !columnItem
+    if !columnItem.sortType or columnItem.sortType == 'desc'
+      columnItem.sortType = 'asc'
+    else if columnItem.sortType == 'asc'
+      columnItem.sortType = 'desc'
+    $scope.allData = _.orderBy($scope.allData, ["#{sortkey}"],["#{columnItem.sortType}"])
+    $scope.pagination.currentPage = 1
+    $scope.parseDataTable()
 
   $scope.loadData = ()->
     params =
