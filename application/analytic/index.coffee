@@ -7,6 +7,7 @@ _config = ($stateProvider, $urlRouterProvider) ->
 _config.$inject = [ "$stateProvider", "$urlRouterProvider"]
 
 _run = ($rootScope)->
+  $rootScope.metaPageTitle = 'Analytic Report'
   $rootScope.leftSidebar = [
     title : 'Content Report'
     href : 'analytic.content-report'
@@ -54,11 +55,11 @@ _run = ($rootScope)->
     href : 'analytic.live-report'
     icon : 'fa fa-align-center'
     bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
-  ,
-    title : 'Live Realtime Dashboard'
-    href : 'analytic.live-realtime'
-    icon : 'fa fa-snowflake-o'
-    bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
+#  ,
+#    title : 'Live Realtime'
+#    href : 'analytic.live-realtime'
+#    icon : 'fa fa-snowflake-o'
+#    bg : $rootScope.bg[_.random(0, $rootScope.bg.length - 1)]
   ]
 
 _run.$inject = ['$rootScope']

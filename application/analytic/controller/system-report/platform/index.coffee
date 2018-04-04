@@ -34,14 +34,14 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
     title : 'Avg Views Time'
     key : 'avg_views_time'
     type : 'time'
-  ,
-    title : 'Player Impression'
-    key : 'player_impression'
-    type : 'number'
-  ,
-    title : 'Player Impression Ratio'
-    key : 'player_impression_ratio'
-    type : 'percent'
+#  ,
+#    title : 'Player Impression'
+#    key : 'player_impression'
+#    type : 'number'
+#  ,
+#    title : 'Player Impression Ratio'
+#    key : 'player_impression_ratio'
+#    type : 'percent'
   ]
   $scope.pagination =
     totalItems : 0
