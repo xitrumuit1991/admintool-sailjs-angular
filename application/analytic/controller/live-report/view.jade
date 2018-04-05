@@ -6,9 +6,18 @@
 			.col-md-12
 				sbd-date-range-select(ng-start-date='param.startDate' ng-end-date='param.endDate')
 			.col-md-12
-				sbd-total-summary-each-module(ng-form='null' ng-data='null')
+				sbd-total-summary-each-module(ng-form-summary='formSummary' ng-data-summary='dataSummary')
 			.col-md-12.mr-top-50
-				uiza-dashboard-unique-user-play-request()
+				sbd-module-chart(ng-title='"Top Content Chart"'
+				ng-option-chart='optionChart'
+				ng-nav-tab-type='chartNavTabType'
+				ng-label-chart='dataLabelsChart'
+				ng-dataset-chart='dataSetChart'
+				)
 			.col-md-12.mr-top-50
-				sbd-table-data(ng-form-table='null' ng-data-table='null' ng-title='"Detail"')
+				sbd-table-data(ng-form-table='form' ng-data-table='data'
+				ng-title='"Detail"'
+				ng-pagination='pagination'
+				ng-action-download='actionDownload'
+				ng-sort-by-key='sortByKey')
 

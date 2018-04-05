@@ -92,4 +92,4 @@ directive = (AnalyticService, ApiService, $rootScope, $document, UtitService, $t
 directive.$inject = ['AnalyticService', 'ApiService', '$rootScope', '$document', 'UtitService', '$timeout', 'AnalyticHelperService','$state']
 angular
   .module 'sbd-admin'
-  .directive "uizaModuleChart", directive
+  .directive "sbdModuleChart", directive
