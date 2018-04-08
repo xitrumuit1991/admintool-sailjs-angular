@@ -1,3 +1,17 @@
+.nav-tabs{
+  .nav-item{
+    &.active{
+      a{
+        color: #fff;
+        background: #3689ff;
+        &:hover, &:focus{
+          color: #fff;
+          background: #3689ff;
+        }
+      }
+    }
+  }
+}
 .analytic {
 
 }
