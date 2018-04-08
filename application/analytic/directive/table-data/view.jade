@@ -18,7 +18,7 @@
 								th(ng-repeat='frm in formTable'
 								ng-class='{"sorting" : !frm.sortType,  "sorting_asc" : frm.sortType =="asc", "sorting_desc":frm.sortType =="desc" }'
 								ng-click='sortByKey(frm.key, frm)')
-									span {{frm.title}}
+									span.text-capitalize {{frm.title}}
 						tbody
 							tr(ng-repeat='ite in dataTable' )
 								td(ng-repeat='frm in formTable' style='{{$first ? "min-width: 250px;" : "" }}')

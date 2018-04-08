@@ -1,0 +1,37 @@
+.analytis-layout-entity-list
+	.box.box-warning
+		.box-header
+			h3.box-title
+				span.mr-5 {{ title || "Top 10 Country by Current Viewers"}}
+				i.fa.fa-question-circle(sbd-tooltip ng-value='title')
+			.clearfix
+		.box-body
+			.row.mr-bottom-30
+				.col-md-6.text-left
+					ul.nav.nav-tabs.smaller.inline.display-inline
+						li.nav-item( ng-repeat='ite in navTabType' ng-class=' { "active": $first }')
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='ite.action()') {{ite.title}}
+				.col-md-6.text-right
+					ul.nav.nav-tabs.smaller.inline.display-inline.pull-right
+						li.nav-item( ng-repeat='ite in navTabRight' ng-class=' { "active": $first }')
+							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='ite.action()') {{ite.title}}
+			.row
+				.col-md-9
+					.google-chart(
+					google-chart
+					chart="optionChart"
+					)
+				.col-md-3
+					.layout-list-top-10-country.mt-5(style='max-height: 500px; overflow-y: scroll; margin-bottom: 20px; padding-bottom: 20px;')
+						table.table
+							tr(ng-if='topCountry.length <= 0')
+								td(colspan=3) There is not enough data to analyze
+							tr(ng-repeat='ite in topCountry')
+								td
+									span.badger-order(ng-class='$index < 3 ? "active" : "" ') {{$index + 1}}
+								td
+									span.text-capitalize(ng-class='$index < 3 ? "text-bold bold highline" : ""')
+										|{{ite.country_name || ite.city_name}}
+								td
+									span(ng-class='$index < 3 ? "text-bold bold highline" : ""') {{ite.total_duration | secondToTime:"hh:mm:ss"}}
+									span(ng-class='$index < 3 ? "text-bold bold highline" : ""') {{ite.total_views | number:"":0}}

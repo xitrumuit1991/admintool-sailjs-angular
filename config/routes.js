@@ -56,4 +56,8 @@ module.exports.routes = {
   'POST /analytic/system-report/browser-table' : 'analytic/systemReportController.browserTable',
   'POST /analytic/system-report/browser-chart' : 'analytic/systemReportController.browserChart',
   'POST /analytic/system-report/browser-summary' : 'analytic/systemReportController.browserSummary',
+
+  //user-community
+  'POST /analytic/user-community/geo-table' : 'analytic/userCommunityReportController.geoTable',
+  'POST /analytic/user-community/geo-chart' : 'analytic/userCommunityReportController.geoChart',
 };

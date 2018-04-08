@@ -3,13 +3,22 @@
 		h1: b Geographic
 	.col-md-12
 		sbd-date-range-select(ng-start-date='param.startDate' ng-end-date='param.endDate')
-	.col-md-12
+	//.col-md-12
 		sbd-total-summary-each-module(ng-form-summary='formSummary' ng-data-summary='dataSummary')
 	.col-md-12.mr-top-50
-		sbd-dashboard-top-ten-country()
+		sbd-dashboard-top-ten-country(
+		ng-title='"Top Country"'
+		ng-option-chart='optionChart'
+		ng-nav-tab-type='chartNavTabType'
+		ng-nav-tab-right='chartNavTabRight'
+		ng-top-country='topCountry'
+		ng-key-country-city='keyCountryCity'
+		)
 	.col-md-12.mr-top-50
-		sbd-table-data(ng-form-table='form' ng-data-table='data'
-		ng-title='"Detail"'
+		sbd-table-data(
+		ng-form-table='form'
+		ng-data-table='data'
+		ng-title='"Detail Data"'
 		ng-pagination='pagination'
 		ng-action-download='actionDownload'
 		ng-sort-by-key='sortByKey')

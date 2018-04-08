@@ -1,5 +1,19 @@
 _service = ($rootScope, $http, GlobalConfig, UtitService, uuid, ApiService)->
   self = @
+  self.userCommunityReport =
+    geoTable :(params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/user-community/geo-table"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    geoChart :(params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/user-community/geo-chart"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+
   self.systemReport =
     platformTable : (params = {}, done)->
       options =
