@@ -9,7 +9,7 @@ _run = ($rootScope)->
 _run.$inject = ['$rootScope']
 
 _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $timeout, $location, $interval,
-  AnalyticService,$filter) ->
+  AnalyticService,$filter, AnalyticHelperService) ->
   $rootScope.metaPageTitle = 'Geographic Report'
   $scope.param =
     startDate : ''
@@ -112,13 +112,23 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
 #        ['Germany', 200],
     ]
     options : {
-      width : 1000,
+      width : 900,
       height : 500,
       chartArea : {left : 10, top : 10, bottom : 0, height : "100%"},
-      colorAxis : {colors : ['#e65252', '#90be2e', '#097cff']},
+      colorAxis : {colors : [
+        '#3fb4f9',
+        '#ffe424',
+        '#ff8812',
+        '#e61518',
+      ]},
       backgroundColor : '#fff',
-      datalessRegionColor : '#b2b2b2',
-      displayMode : 'regions'
+      datalessRegionColor : '#d8d8d8',
+      defaultColor: '#f5f5f5',
+      displayMode : 'regions',
+      magnifyingGlass:{
+        enable: true,
+        zoomFactor: 7.5
+      }
     }
     formatters : {
       number : [{
@@ -127,26 +137,44 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
       }]
     }
   }
+
   $scope.topCountry = []
   $scope.keyCountryCity = 'country_name'
   $scope.keyDurationOrView = 'total_duration'
+  $scope.keySelectTop = 20
 
   geoChartByDurationOrViews = (durationOrView = 'total_duration', countryOrCity = 'country_name')->
+    if countryOrCity is 'city_name'
+      $scope.optionChart.options.region = 'VN'
+      $scope.optionChart.options.displayMode = 'regions' # 'markers' 'regions'
+      $scope.optionChart.options.resolution = 'provinces'
+    else
+      $scope.optionChart.options.displayMode = 'regions'
+      delete $scope.optionChart.options.region
+      delete $scope.optionChart.options.resolution
     params =
       partner_code :  $rootScope.user.partner_code || "thvli"
       start : moment($scope.param.startDate, 'YYYY-MM-DD').unix()
       end : moment($scope.param.endDate, 'YYYY-MM-DD').unix()
       type_name: countryOrCity
-      top_n: 50
+      top_n: $scope.keySelectTop
       order_by_field: durationOrView
     $.blockUI()
     AnalyticService.userCommunityReport.geoChart params, (err, result)->
       $.unblockUI()
       return if err or !result
-      $scope.optionChart.data = [ ['Locale', 'Count']]
+      if countryOrCity is 'city_name'
+        $scope.optionChart.data = [ ['Provine', 'Count']]
+      else
+        $scope.optionChart.data =  [ ['Country', 'Count']]
       _.map result.data, (item)->
-        $scope.optionChart.data.push([item[countryOrCity], item[durationOrView]])
+        if countryOrCity is 'city_name'
+          cityName = AnalyticHelperService.mapCityNameCityCode(item[countryOrCity])
+          $scope.optionChart.data.push([cityName,item[durationOrView]])
+        else
+          $scope.optionChart.data.push([item[countryOrCity], item[durationOrView]])
       $scope.topCountry = _.orderBy(result.data, [durationOrView],['desc'])
+      console.log '$scope.optionChart.data',$scope.optionChart.data
 
   $scope.chartNavTabType = [
     title : 'Duration'
@@ -158,6 +186,7 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
     action : ()->
       $scope.keyDurationOrView = 'total_views'
       geoChartByDurationOrViews($scope.keyDurationOrView, $scope.keyCountryCity)
+
   ]
 
   $scope.chartNavTabRight = [
@@ -170,6 +199,16 @@ _controller = ($rootScope, $scope, $http, ApiService, UtitService, $state, $time
     action : ()->
       $scope.keyCountryCity = 'city_name'
       geoChartByDurationOrViews($scope.keyDurationOrView,$scope.keyCountryCity)
+  ,
+    title : 'Select'
+    type : 'select'
+    options : [10,20,30,50, 100]
+    key : 'keySelectTop'
+    action : (value)->
+      value = parseInt(value)
+      console.log value
+      $scope.keySelectTop = value
+      geoChartByDurationOrViews($scope.keyDurationOrView, $scope.keyCountryCity)
   ]
 
   $scope.$watch 'param.startDate', (data)->
@@ -239,7 +278,7 @@ _controller.$inject = ['$rootScope', '$scope', '$http', 'ApiService',
   '$state',
   '$timeout',
   '$location',
-  '$interval','AnalyticService','$filter'
+  '$interval','AnalyticService','$filter','AnalyticHelperService'
 ]
 
 window.app

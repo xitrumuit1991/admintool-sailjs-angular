@@ -1,5 +1,6 @@
 directive = (ApiService, $rootScope, $document, UtitService, $timeout, AnalyticService, AnalyticHelperService) ->
   link = ($scope, element, attr) ->
+    $scope.loaded = false
     $scope.topCountry = []
     $scope.optionChart = {
       type : "GeoChart"
@@ -8,8 +9,8 @@ directive = (ApiService, $rootScope, $document, UtitService, $timeout, AnalyticS
 #        ['Germany', 200],
       ]
       options : {
-        width : 1000,
-        height : 600,
+        width : 900,
+        height : 500,
         chartArea : {left : 10, top : 10, bottom : 0, height : "100%"},
         colorAxis : {colors : [
           '#3fb4f9',
@@ -20,7 +21,14 @@ directive = (ApiService, $rootScope, $document, UtitService, $timeout, AnalyticS
         backgroundColor : '#fff',
         datalessRegionColor : '#d8d8d8',
         defaultColor: '#f5f5f5',
-        displayMode : 'regions'
+        displayMode : 'regions',
+#        region:'VN'
+#        displayMode: 'regions',
+#        resolution: 'provinces',
+        magnifyingGlass:{
+          enable: true,
+          zoomFactor: 7.5
+        }
       }
       formatters : {
         number : [{
@@ -30,15 +38,14 @@ directive = (ApiService, $rootScope, $document, UtitService, $timeout, AnalyticS
       }
     }
 
-    $scope.$watch('optionChart',(data)->
+    $scope.$watch 'optionChart',(data)->
       return unless data
       $scope.optionChart = data
-    )
+      $scope.loaded = true
 
-    $scope.$watch('topCountry',(data)->
+    $scope.$watch 'topCountry',(data)->
       return unless data
       $scope.topCountry = data
-    )
 
 
     return

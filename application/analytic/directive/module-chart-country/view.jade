@@ -14,15 +14,28 @@
 				.col-md-6.text-right
 					ul.nav.nav-tabs.smaller.inline.display-inline.pull-right
 						li.nav-item( ng-repeat='ite in navTabRight' ng-class=' { "active": $first }')
-							a.nav-link(data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='ite.action()') {{ite.title}}
+							a.nav-link(
+							ng-if='ite.type != "select"'
+							data-toggle='tab', href='#uniqueUsers', aria-expanded='true' ng-click='ite.action()') {{ite.title}}
+
+					select.form-control.mr-5.nav.nav-tabs(
+					style='display: inline; width: 50px;'
+					ng-if='navTabRight[2].type == "select"'
+					ng-model='navTabRight[2].key'
+					ng-init='navTabRight[2].key = "20"'
+					ng-change="navTabRight[2].action(navTabRight[2].key)"
+					)
+						option(ng-repeat="opt in navTabRight[2].options" value='{{opt}}') {{opt}}
 			.row
 				.col-md-9
 					.google-chart(
+					ng-if='loaded == true'
+					style='width:100%'
 					google-chart
 					chart="optionChart"
 					)
 				.col-md-3
-					.layout-list-top-10-country.mt-5(style='max-height: 500px; overflow-y: scroll; margin-bottom: 20px; padding-bottom: 20px;')
+					.layout-list-top-10-country.mt-5
 						table.table
 							tr(ng-if='topCountry.length <= 0')
 								td(colspan=3) There is not enough data to analyze

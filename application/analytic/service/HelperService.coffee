@@ -1,5 +1,22 @@
 _service = ($rootScope, $http, GlobalConfig, UtitService, uuid, ApiService)->
   self = @
+  self.mapCityNameCityCode = (cityName)->
+    cityCodeGG = [
+      {nameGG: 'Điện Biên', nameApi:'Điện Biên'}
+      {nameGG: 'Hòa Bình', nameApi:'Hòa Bình'}
+      {nameGG: 'Lai Châu', nameApi:'Lai Châu'}
+      {nameGG: 'Lào Cai', nameApi:'Lào Cai'}
+      {nameGG: 'Sơn La', nameApi:'Sơn La'}
+      {nameGG: 'Yên Bái', nameApi:'Yên Bái'}
+#      {nameGG : 'VN-HN', nameApi : 'Hanoi' },
+#      {nameGG : "VN-CT", nameApi : "" },
+#      {nameGG : "VN-CT", nameApi : "Bien Hoa" },
+    ]
+    index = _.findIndex(cityCodeGG, {nameApi : cityName})
+    if index != -1
+      return cityCodeGG[index].nameGG
+    return cityName
+
   self.sortKeyOfObject = (obj) ->
     keys = []
     sorted_obj = {}
