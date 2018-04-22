@@ -1,16 +1,38 @@
 _service = ($rootScope, $http, GlobalConfig, UtitService, uuid, ApiService)->
   self = @
   self.mapCityNameCityCode = (cityName)->
+    cityName = cityName.trim()
     cityCodeGG = [
-      {nameGG: 'Điện Biên', nameApi:'Điện Biên'}
-      {nameGG: 'Hòa Bình', nameApi:'Hòa Bình'}
-      {nameGG: 'Lai Châu', nameApi:'Lai Châu'}
-      {nameGG: 'Lào Cai', nameApi:'Lào Cai'}
-      {nameGG: 'Sơn La', nameApi:'Sơn La'}
-      {nameGG: 'Yên Bái', nameApi:'Yên Bái'}
-#      {nameGG : 'VN-HN', nameApi : 'Hanoi' },
-#      {nameGG : "VN-CT", nameApi : "" },
-#      {nameGG : "VN-CT", nameApi : "Bien Hoa" },
+      {nameGG : 'VN-HN', nameApi : 'Hanoi' },
+      {nameGG : 'VN-SG', nameApi : 'Ho Chi Minh City' },
+      {nameGG : 'VN-DN', nameApi : 'Da Nang' },
+      {nameGG : 'VN-CT', nameApi : 'Can Tho' },
+      {nameGG : 'Bà Rịa–Vũng Tàu', nameApi : 'Vũng Tàu' },
+      {nameGG : 'Đồng Nai', nameApi : 'Bien Hoa' },
+      {nameGG : 'Khánh Hòa', nameApi : 'Nha Trang' },
+      {nameGG : 'Sóc Trăng', nameApi : 'Soc Trang' },
+      {nameGG : 'Phú Yên', nameApi : 'Qui Nhon' },
+      {nameGG : 'Đồng Tháp', nameApi : 'Cao Lanh' },
+      {nameGG : 'Tiền Giang', nameApi : 'Mỹ Tho' },
+      {nameGG : 'Bình Dương', nameApi : 'Thuan An' },
+      {nameGG : 'An Giang', nameApi : 'Long Xuyen' },
+      {nameGG : 'Vĩnh Long', nameApi : 'Vinh Long' },
+      {nameGG : 'Bạc Liêu', nameApi : 'Thanh pho Bac Lieu' },
+      {nameGG : 'Bạc Liêu', nameApi : 'Thanh Pho Bac Lieu' },
+      {nameGG : 'Kiên Giang', nameApi : 'Rach Gia' },
+      {nameGG : 'Lâm Đồng', nameApi : 'Bao Loc' },
+      {nameGG : 'Trà Vinh', nameApi : 'Tra Vinh' },
+      {nameGG : 'Hải Phòng City', nameApi : 'Haiphong' },
+      {nameGG : 'Long An', nameApi : 'Tan An' },
+      {nameGG : 'Ninh Thuận', nameApi : 'Phan Rang' },
+      {nameGG : 'Bình Thuận', nameApi : 'Phan Thiết' },
+      {nameGG : 'Đắk Lắk', nameApi : 'Buon Ma Thuot' },
+      {nameGG : 'Trà Vinh', nameApi : 'Vinh' },
+      {nameGG : 'Gia Lai', nameApi : 'Pleiku' },
+      {nameGG : 'Long An', nameApi : 'Long An' },
+      {nameGG : 'Quảng Ngãi', nameApi : 'Quảng Ngãi' },
+      {nameGG : 'Thừa Thiên–Huế', nameApi : 'Huế' },
+      {nameGG : 'Hậu Giang', nameApi : 'Vi Thanh' },
     ]
     index = _.findIndex(cityCodeGG, {nameApi : cityName})
     if index != -1

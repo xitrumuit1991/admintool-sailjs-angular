@@ -11,7 +11,7 @@
 				.row
 					.col-md-2(ng-repeat='frm in formSummary' style='{{!$last ? "border-right: 1px solid #ccc;" : "" }}')
 						.pd-left-5.pd-top-10.pd-bottom-10
-							label.block.mr-bottom-10.title {{frm.title}}
+							label.block.mr-bottom-10.title.text-capitalize {{frm.title}}
 							span.block.value(ng-if='frm.type == "text" ') {{ dataSummary[frm.key]  }}
 							span.block.value(ng-if='frm.type == "number" ') {{ dataSummary[frm.key] | number : 0 }}
 							span.block.value(ng-if='frm.type == "percent" ') {{ dataSummary[frm.key] | number : 2  }} %

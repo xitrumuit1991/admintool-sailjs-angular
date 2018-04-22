@@ -89,3 +89,55 @@ module.exports.getContentByIds = (req, res)->
       return res.badRequest(err)
     res.ok(result)
 
+
+
+
+
+
+#------------------content drop-off---------------------
+###
+@api {post} /analytic/content-report/drop-off-table drop-off table
+@apiName drop-off table
+@apiGroup Analytic-Content-Report
+@apiPermission /analytic/content-report/drop-off-table
+@apiParam {string} partner_code in body of post. Ex: 'thvli'
+@apiParam {int} start in body of post. Ex: 1519862400
+@apiParam {int} end in body of post. Ex: 1522540799
+###
+exports.dropOffTable = (req, res)->
+  param = req.allParams()
+  options =
+    url: urlLinkApi + '/report/dropoff/table'
+    method : 'POST'
+    json : true
+    body : param #form : param #data : param
+  ApiService.request options,(err, result)->
+    if err or !result
+      return res.badRequest(err)
+    if result and result.data and result.data[0]
+      result.data = lodash.orderBy(result.data, ['total_play'],['desc'])
+    res.ok(result)
+
+###
+@api {post} /analytic/content-report/drop-off-summary drop-off summary
+@apiName drop-off summary
+@apiGroup Analytic-Content-Report
+@apiPermission /analytic/content-report/drop-off-summary
+@apiParam {string} partner_code in body of post. Ex: 'thvli'
+@apiParam {int} start in body of post. Ex: 1519862400
+@apiParam {int} end in body of post. Ex: 1522540799
+###
+exports.dropOffSummary = (req, res)->
+  param = req.allParams()
+  options =
+    url: urlLinkApi + '/report/dropoff/summary'
+    method : 'POST'
+    json : true
+    body : param #form : param #data : param
+  ApiService.request options,(err, result)->
+    if err or !result
+      return res.badRequest(err)
+    if result and result.data and result.data[0]
+      result.data = lodash.orderBy(result.data, ['total_play'],['desc'])
+    res.ok(result)
+

@@ -43,6 +43,8 @@ module.exports.routes = {
   'POST /analytic/content-report/top-content-chart' : 'analytic/contentReportController.topContentChart',
   'POST /analytic/content-report/top-content-summary' : 'analytic/contentReportController.topContentSummary',
   'POST /analytic/content-report/get-content-by-ids' : 'analytic/contentReportController.getContentByIds',
+  'POST /analytic/content-report/drop-off-table' : 'analytic/contentReportController.dropOffTable',
+  'POST /analytic/content-report/drop-off-summary' : 'analytic/contentReportController.dropOffSummary',
 
   //system-report
   'POST /analytic/system-report/platform-table' : 'analytic/systemReportController.platformTable',

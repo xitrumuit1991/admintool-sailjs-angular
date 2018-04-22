@@ -99,6 +99,19 @@ _service = ($rootScope, $http, GlobalConfig, UtitService, uuid, ApiService)->
         data : params
       ApiService.request(options, done)
 
+    dropOffTable : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/content-report/drop-off-table"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+    dropOffSummary : (params = {}, done)->
+      options =
+        url : "#{GlobalConfig.apiUrl}/analytic/content-report/drop-off-summary"
+        method : "POST"
+        data : params
+      ApiService.request(options, done)
+
   return
 _service.$inject = ['$rootScope', '$http', 'GlobalConfig', 'UtitService', 'uuid', 'ApiService']
 angular.module('sbd-admin')
