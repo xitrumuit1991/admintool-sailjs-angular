@@ -82,7 +82,8 @@ module.exports =
   checkUserExit : (email, cb)->
     user.findOneByEmail(email).exec (error, result)->
       if error
-        return cb true, {code: 1, message:'Server error'}
+        console.log(error);
+        return cb true, {code: 1, message:'Server error', error: error.toString()}
       if _.isEmpty(result)
         return cb true, {code:1, message:'Account is not found'}
       return cb null, result

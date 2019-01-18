@@ -34,7 +34,11 @@ module.exports.auth = (req, res)->
       return
 
   checkUserExist = (cb)->
-    user.checkUserExit params.email, cb
+    user.checkUserExit(params.email,(err, result)->
+      if(err)
+        console.log(err)
+      cb(err, result);
+    )
 
   verifyPassword = (userInfo, cb)->
     if userInfo.password isnt md5(params.password)
@@ -49,7 +53,7 @@ module.exports.auth = (req, res)->
     getPermissionList
   ], (error, result)->
     if error
-      sails.log.error 'finishLogin ERROR',error
+      sails.log.error 'finishLogin ERROR',error, result
       req.session.authenticated = null
       req.session.user = null
       res.view('application/login', {result : result})
