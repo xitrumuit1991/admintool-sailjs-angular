@@ -8,7 +8,8 @@ switch window.ENV
   when 'production', 'prod'
     config = _.extend(config, {
 #      apiUrl : 'http://113.164.27.20:8080'
-      apiUrl : 'http://analytics.thvli.vimai.vn'
+      apiUrl : 'http://203.205.37.249:8000'
+#      apiUrl : 'http://analytics.thvli.vimai.vn'
     })
   when 'development', 'dev'
     config = _.extend(config, {
