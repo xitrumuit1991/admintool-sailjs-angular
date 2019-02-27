@@ -2,6 +2,9 @@
 
 Admin application module
 
+##Mysql Server
+
+##Redis Server
 
 ### Development Env
 * node app.js
